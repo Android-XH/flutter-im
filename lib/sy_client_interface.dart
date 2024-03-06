@@ -18,8 +18,11 @@ abstract class SyClientInterface {
   ///通过token登录，token由第三方业务后台调用API获取
   void loginByToken(
       {required String token, required SyCallBack<AuthInfo> callback});
+
+  ///通过业务方用户ID直接登录
   void loginByUUID(
       {required String uuid, required SyCallBack<AuthInfo> callback});
+
   /// 退出登录
   void logOut({required SyCallBack<String> callback});
 }

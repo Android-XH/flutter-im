@@ -77,13 +77,13 @@ class _MyAppState extends State<MyApp> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 50,
                 child: Text('connect status is: $_connectStatus'),
               ),
-              Container(
+              SizedBox(
                 height: 200,
-                child: Text(),
+                child: Text('login userInfo is: $_loginInfo'),
               ),
               _buildButton(
                   title: "TOKEN登录",
@@ -107,8 +107,16 @@ class _MyAppState extends State<MyApp> {
                   title: "UUID登录",
                   onPressed: () {
                     SyClient.getInstance().loginByUUID(
-                        uuid: "05b3dcc21d934283b2c493b8fbf88a7b",
-                        callback: _loginCallBack);
+                      uuid: "05b3dcc21d934283b2c493b8fbf88a7b",
+                      callback: SyCallBack(onSuccess: (authInfo) {
+                        print("登录成功:${authInfo.toJson()}");
+                        setState(() {
+                          _loginInfo = "${authInfo.toJson()}";
+                        });
+                      }, onFail: (code, msg) {
+                        print("登录失败 code:$code msg:$msg");
+                      }),
+                    );
                   }),
               Container(
                 height: 5,
@@ -140,16 +148,5 @@ class _MyAppState extends State<MyApp> {
         style: const TextStyle(color: Colors.white),
       ),
     );
-  }
-
-  SyCallBack<AuthInfo> _loginCallBack() {
-    return SyCallBack(onSuccess: (authInfo) {
-      print("登录成功:${authInfo.toJson()}");
-      setState(() {
-        _loginInfo = "${authInfo.toJson()}";
-      });
-    }, onFail: (code, msg) {
-      print("登录失败 code:$code msg:$msg");
-    });
   }
 }
