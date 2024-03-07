@@ -1,0 +1,12 @@
+//
+//  SYIMPClientInitHandler.m
+//  sy_im_sdk
+//
+//  Created by 张国梁 on 2024/3/7.
+//
+
+#import "SYIMPClientInitHandler.h"
+
+@implementation SYIMPClientInitHandler
+
+@end

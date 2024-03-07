@@ -19,6 +19,7 @@ A new Flutter project.
   s.dependency 'Flutter'
 #  s.dependency 'SYIM'
   s.dependency 'MJExtension'
+  s.dependency 'SYIM'
   
 
   # Flutter.framework does not contain a i386 slice.
