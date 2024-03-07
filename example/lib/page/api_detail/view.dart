@@ -79,7 +79,7 @@ class ApiDetailPage extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(10),
             child: Text(
-              state.result.value,
+              state.result.value??"",
               style: const TextStyle(color: Colors.white),
             ),
           )
