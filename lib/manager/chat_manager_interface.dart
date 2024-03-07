@@ -5,21 +5,17 @@ import 'package:sy_im_sdk/manager/data/sy_message.dart';
 
 ///聊天管理器接口
 abstract class ChatManagerInterface {
-  void addMessageListener(OnMessageListener onMessageListener) {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
+  //添加消息监听
+  void addMessageListener(OnMessageListener onMessageListener);
 
-  void removeMessageListener(OnMessageListener onMessageListener) {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
+  //移除消息监听
+  void removeMessageListener(OnMessageListener onMessageListener);
 
   /// 发送消息
   /// @param syMessage 消息对象
   /// @param callBack 回调对象
   void sendMessage(
-      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack});
 
   /// 查询消息
   /// @param msgId    消息ID
