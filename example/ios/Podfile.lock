@@ -1,0 +1,35 @@
+PODS:
+  - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - MJExtension (3.4.1)
+  - sy_im_sdk (0.0.1):
+    - Flutter
+    - MJExtension
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - sy_im_sdk (from `.symlinks/plugins/sy_im_sdk/ios`)
+
+SPEC REPOS:
+  trunk:
+    - MJExtension
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  sy_im_sdk:
+    :path: ".symlinks/plugins/sy_im_sdk/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  integration_test: 13825b8a9334a850581300559b8839134b124670
+  MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
+  sy_im_sdk: 272561d76ba5a955e361de93bc87d7708aa1f0d1
+
+PODFILE CHECKSUM: 6e700dec67e6deac9b1c69bb14c49a2217a12d15
+
+COCOAPODS: 1.15.2
