@@ -1,5 +1,5 @@
 import 'package:sy_im_sdk/config/sy_options.dart';
-import 'package:sy_im_sdk/sy_client.dart';
+
 
 class CreateSyOptions {
   SyOptions _createSyOptions() {

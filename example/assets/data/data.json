@@ -11,5 +11,18 @@
         "className": "SyClientInit"
       }
     ]
+  },
+  {
+    "title": "会话管理",
+    "children": [
+      {
+        "title": "获取会话列表",
+        "className": "CreateSyOptions"
+      },
+      {
+        "title": "添加会话监听",
+        "className": "SyClientInit"
+      }
+    ]
   }
 ]
