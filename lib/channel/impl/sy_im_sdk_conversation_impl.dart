@@ -19,14 +19,13 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
       const MethodChannel(ChannelCommon.syClientMethodChannel);
 
   @override
-  Future<void> getConversationList(
-      {required String uuid,
-      required SyCallBack<List<SyConversation>> callback}) async {}
+  void getConversationList(
+      {required SyCallBack<List<SyConversation>> callback})  {}
 
   @override
-  Future<void> createSignConversation(
+  void createSignConversation(
       {required String uuid,
-      required SyCallBack<SyConversation> callback}) async {
+      required SyCallBack<SyConversation> callback})  {
     Map<String, String> arguments = <String, String>{};
     arguments.putIfAbsent("uuid", () => uuid);
     methodChannel
