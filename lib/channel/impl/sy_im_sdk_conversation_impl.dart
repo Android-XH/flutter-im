@@ -20,11 +20,5 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
       const MethodChannel(ChannelCommon.syClientMethodChannel);
 
 
-  @override
-  Future<void> getConversationList({required String token, required SyCallBack<List<ConversationInfo>> callback}) {
-    // TODO: implement getConversationList
-
-
-  }
 
 }
