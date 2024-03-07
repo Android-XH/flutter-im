@@ -50,27 +50,27 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
     private OnConnectListener onConnectListener = new OnConnectListener() {
         @Override
         public void onForcedOffLine() {
-            postData("FORCED_OFFLINE", 500, "用户token失效或在其他设备登录!");
+            postConnectData("FORCED_OFFLINE", 500, "用户token失效或在其他设备登录!");
         }
 
         @Override
         public void onConnectFail(int i, String s) {
-            postData("CONNECT_FAIL", i, s);
+            postConnectData("CONNECT_FAIL", i, s);
         }
 
         @Override
         public void onConnectSuccess() {
-            postData("CONNECT_SUCCESS", 200, "connect success");
+            postConnectData("CONNECT_SUCCESS", 200, "connect success");
         }
 
         @Override
         public void onAuthSuccess(AuthInfo authInfo) {
-            postData("AUTH_SUCCESS", 200, GsonUtil.toJson(authInfo));
+            postConnectData("AUTH_SUCCESS", 200, GsonUtil.toJson(authInfo));
         }
 
         @Override
         public void onAuthFail(String s) {
-            postData("AUTH_FAIL", 500, s);
+            postConnectData("AUTH_FAIL", 500, s);
         }
     };
 
