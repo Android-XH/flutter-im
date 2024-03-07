@@ -3,6 +3,7 @@ import 'package:sy_im_sdk/channel/impl/sy_im_sdk_conversation_impl.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
 
 import '../listener/sy_call_back.dart';
+import '../manager/data/sy_contact.dart';
 import '../manager/data/sy_conversation.dart';
 
 import 'impl/sy_im_sdk_method_channel.dart';
@@ -27,14 +28,27 @@ abstract class SyImSdkConversation extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<void> getConversationList(
-      {required String uuid,
-      required SyCallBack<List<SyConversation>> callback}) {
+  void getConversationList(
+      {required SyCallBack<List<SyConversation>> callback}) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<void> createSignConversation({required String uuid,required SyCallBack<SyConversation> callback}){
+  void createSignConversationByUid(
+      {required String uuid, required SyCallBack<SyConversation> callback}) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
+  void createSignConversationByContact(
+      {required SyContact contact,
+      required SyCallBack<SyConversation> callback}) {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  void removeConversation({required String sessionId, required SyCallBack<bool> callback}) {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  void setConversationTopping({required String sessionId, required topping,required SyCallBack<bool> callback}) {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
 }

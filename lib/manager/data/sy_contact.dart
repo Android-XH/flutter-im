@@ -1,5 +1,5 @@
-class Contact {
-  Contact({
+class SyContact {
+  SyContact({
     String? avatar,
     dynamic birthday,
     dynamic email,
@@ -26,7 +26,7 @@ class Contact {
     _userId = userId;
   }
 
-  Contact.fromJson(dynamic json) {
+  SyContact.fromJson(dynamic json) {
     _avatar = json['avatar'];
     _birthday = json['birthday'];
     _email = json['email'];
@@ -52,7 +52,7 @@ class Contact {
   num? _status;
   num? _type;
   String? _userId;
-  Contact copyWith({  String? avatar,
+  SyContact copyWith({  String? avatar,
     dynamic birthday,
     dynamic email,
     Extension? extension,
@@ -64,7 +64,7 @@ class Contact {
     num? status,
     num? type,
     String? userId,
-  }) => Contact(  avatar: avatar ?? _avatar,
+  }) => SyContact(  avatar: avatar ?? _avatar,
     birthday: birthday ?? _birthday,
     email: email ?? _email,
     extension: extension ?? _extension,
