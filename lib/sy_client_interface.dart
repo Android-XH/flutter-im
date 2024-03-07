@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sy_im_sdk/manager/chat_manager.dart';
 import 'package:sy_im_sdk/manager/conversation_manager.dart';
 
+import 'channel/sy_im_sdk_conversation_interface.dart';
 import 'config/sy_options.dart';
 import 'listener/sy_on_dart_connect_listener.dart';
 import 'listener/sy_call_back.dart';

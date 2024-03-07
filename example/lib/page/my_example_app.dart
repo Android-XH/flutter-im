@@ -144,6 +144,23 @@ class _MyAppState extends State<MyExampleApp> {
                               onCmdMsg: (syMessage) {},
                               onUnLineMsg: (syMessageList) {}));
                     }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "创建会话",
+                    onPressed: () {
+                      SyClient.getInstance()
+                          .getConversationManager()
+                          .createSignConversation(
+                              uuid: "66666666666666666666666666666666",
+                              callback: SyCallBack(
+                                  onSuccess: (c) {
+                                    print("------------->${c.associationId}");
+                                  }, onFail: (c, m) {
+                                print("------------->${m}");
+                              }));
+                    })
               ],
             ),
           )),

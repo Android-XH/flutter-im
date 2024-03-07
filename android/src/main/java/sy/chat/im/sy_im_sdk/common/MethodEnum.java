@@ -7,6 +7,8 @@ import sy.chat.im.sy_im_sdk.handler.impl.conversation.GetConversationListHandler
 import sy.chat.im.sy_im_sdk.handler.impl.client.LogOutHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.LoginByTokenHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.SyClientInitHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.CreateSignConversationHandler;
+
 
 public enum MethodEnum {
 
@@ -15,12 +17,9 @@ public enum MethodEnum {
     SY_CLIENT_LOGIN_BY_ACCOUNT_ID("loginByAccountId",new LoginByUuidHandler()),
     SY_CLIENT_LOGOUT("logOut",new LogOutHandler()),
 
-
-
-    SY_CLIENT_ADD_CONNECT_LISTENER("addConnectListener",new AddConnectListenerHandler()),
-    SY_CLIENT_GET_CONVERSATION_LIST("getConversationList",new GetConversationListHandler())
-
-    ;
+    SY_CLIENT_ADD_CONNECT_LISTENER("addConnectListener", new AddConnectListenerHandler()),
+    SY_CLIENT_GET_CONVERSATION_LIST("getConversationList", new GetConversationListHandler()),
+    CREATE_SIGN_CONVERSATION("createSignConversation", new CreateSignConversationHandler());
 
     MethodEnum(String methodName, MethodHandler methodHandler) {
         this.methodHandler = methodHandler;
