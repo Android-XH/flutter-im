@@ -1,37 +1,17 @@
 import 'dart:ffi';
 
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sy_im_sdk/channel/impl/sy_im_sdk_conversation_impl.dart';
-import 'package:sy_im_sdk/config/sy_options.dart';
-
 import '../common/session_type.dart';
 import '../listener/sy_call_back.dart';
-import '../manager/data/sy_contact.dart';
-import '../manager/data/sy_conversation.dart';
+import '../listener/sy_conversation_listener.dart';
+import 'data/sy_conversation.dart';
 
-import '../manager/data/sy_message.dart';
-import 'impl/sy_im_sdk_method_channel.dart';
+abstract class ConversationManagerInterface {
+  void createSignConversation(
+      {required String uuid, required SyCallBack<SyConversation> callback}) ;
 
-abstract class SyImSdkConversation extends PlatformInterface {
-  SyImSdkConversation() : super(token: _token);
+  void addConversationListener(ConversationListener conversationListener) ;
 
-  static final Object _token = Object();
-
-  static SyImSdkConversation _instance = SyImSdkConversationImpl();
-
-  /// The default instance of [SyImSdkPlatform] to use.
-  ///
-  /// Defaults to [MethodChannelSyImSdk].
-  static SyImSdkConversation get instance => _instance;
-
-  /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [SyImSdkPlatform] when
-  /// they register themselves.
-  static set instance(SyImSdkConversation instance) {
-    PlatformInterface.verifyToken(instance, _token);
-    _instance = instance;
-  }
-
+  void removeConversationListener(ConversationListener conversationListener) ;
   /**
    * 获取当前登陆用户的会话列表
    */
@@ -59,7 +39,7 @@ abstract class SyImSdkConversation extends PlatformInterface {
    */
   void createSignConversationByContact(
       {required SyContact contact,
-      required SyCallBack<SyConversation> callback}) {
+        required SyCallBack<SyConversation> callback}) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
@@ -81,8 +61,8 @@ abstract class SyImSdkConversation extends PlatformInterface {
    */
   void setConversationTopping(
       {required String sessionId,
-      required topping,
-      required SyCallBack<bool> callback}) {
+        required topping,
+        required SyCallBack<bool> callback}) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 

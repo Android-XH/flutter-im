@@ -1,6 +1,6 @@
 
 import 'package:sy_im_sdk/manager/chat_manager_interface.dart';
-import 'package:sy_im_sdk/manager/conversation_manager.dart';
+import 'package:sy_im_sdk/manager/impl/conversation_manager.dart';
 
 import 'channel/sy_im_sdk_conversation_interface.dart';
 import 'config/sy_options.dart';
