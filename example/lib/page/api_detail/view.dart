@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sy_im_sdk_example/page/api_detail/widgets/edit_options_widget.dart';
 import 'package:sy_im_sdk_example/page/api_detail/widgets/edit_sy_client_init_widget.dart';
+import 'package:sy_im_sdk_example/page/api_detail/widgets/edit_sy_login_by_token.dart';
 
 import 'logic.dart';
 
@@ -66,6 +67,11 @@ class ApiDetailPage extends StatelessWidget {
         return const EditOptionsWidget();
       case "SyClientInit":
         return const EditSyClientInitWidget();
+      case "SyLoginByUserName":
+        return const EditSyLoginByToken();
+      default:
+        return Container();
+        break;
     }
   }
 
@@ -73,16 +79,15 @@ class ApiDetailPage extends StatelessWidget {
     return Obx(() => Container(
         height: 200,
         width: double.infinity,
-        margin: const EdgeInsets.only(left: 20, right: 20,bottom: 20),
-        child:Card(
-          color: Colors.black,
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            child: Text(
-              state.result.value??"",
-              style: const TextStyle(color: Colors.white),
-            ),
-          )
-        )));
+        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        child: Card(
+            color: Colors.black,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                state.result.value ?? "",
+                style: const TextStyle(color: Colors.white),
+              ),
+            ))));
   }
 }

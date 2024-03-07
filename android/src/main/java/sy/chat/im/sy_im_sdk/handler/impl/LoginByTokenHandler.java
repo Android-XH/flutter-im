@@ -30,9 +30,6 @@ public class LoginByTokenHandler implements MethodHandler {
         } else {
             result.error("500", "token is null!", "Argument not found token key!");
         }
-        result.success(GsonUtil.toJson( SyClient.getInstance().conversationManager().getConversationList()));
-
-
     }
 
 }

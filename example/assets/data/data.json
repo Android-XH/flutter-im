@@ -13,6 +13,19 @@
     ]
   },
   {
+    "title": "用户鉴权",
+    "children": [
+      {
+        "title": "通过UUID登录",
+        "className": "SyClientInit"
+      },
+      {
+        "title": "通过Token登录",
+        "className": "SyLoginByUserName"
+      }
+    ]
+  },
+  {
     "title": "会话管理",
     "children": [
       {
