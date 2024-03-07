@@ -3,6 +3,7 @@ import 'package:sy_im_sdk/channel/impl/sy_im_sdk_chat_impl.dart';
 import 'package:sy_im_sdk/channel/impl/sy_im_sdk_conversation_impl.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/manager/data/conversation_info.dart';
+import 'package:sy_im_sdk/manager/data/sy_message.dart';
 
 import '../listener/sy_call_back.dart';
 import '../manager/data/auth_info.dart';
@@ -30,8 +31,8 @@ abstract class SyImSdkChat extends PlatformInterface {
   }
 
   Future<void> sendMessage(
-      {required String token,
-      required SyCallBack<List<ConversationInfo>> callback}) {
+      {required SyMessage syMessage,
+      required SyCallBack<SyMessage> callback}) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 

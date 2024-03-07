@@ -73,7 +73,7 @@ android {
 
     dependencies {
         compileOnly files("$flutterRoot/bin/cache/artifacts/engine/android-arm/flutter.jar")
-        implementation 'sy.chat:im-android:1.0.2-RELEASE'
+        implementation 'sy.chat:im-android:1.0.3-RELEASE'
     }
 
     testOptions {
