@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
-import 'package:sy_im_sdk/manager/chat_manager.dart';
-import 'package:sy_im_sdk/manager/conversation_manager.dart';
+
+import 'package:sy_im_sdk/manager/chat_manager_interface.dart';
+import 'package:sy_im_sdk/manager/impl/conversation_manager.dart';
 
 import 'channel/sy_im_sdk_conversation_interface.dart';
 import 'config/sy_options.dart';
 import 'listener/sy_on_dart_connect_listener.dart';
 import 'listener/sy_call_back.dart';
+import 'manager/conversation_manager_interface.dart';
 import 'manager/data/sy_auth_info.dart';
 
 abstract class SyClientInterface {
-
   ///初始化SDK
   void init({SyOptions syOptions});
 
@@ -30,6 +30,7 @@ abstract class SyClientInterface {
   /// 退出登录
   void logOut({required SyCallBack<String> callback});
 
-  ConversationManager getConversationManager();
-  ChatManager chatManager();
+  ConversationManagerInterface getConversationManager();
+
+  ChatManagerInterface chatManager();
 }

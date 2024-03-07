@@ -1,4 +1,6 @@
-import 'package:sy_im_sdk/manager/data/sy_connect.dart';
+
+
+import 'package:sy_im_sdk/manager/data/sy_contact.dart';
 
 /// associationId : "66666666666666666666666666666666"
 /// avatar : ""
@@ -21,7 +23,7 @@ class SyConversation {
   SyConversation({
       String? associationId, 
       String? avatar, 
-      Contact? contact, 
+      SyContact? contact,
       String? key, 
       dynamic lastMessage, 
       bool? localData, 
@@ -56,7 +58,7 @@ class SyConversation {
   SyConversation.fromJson(dynamic json) {
     _associationId = json['associationId'];
     _avatar = json['avatar'];
-    _contact = json['contact'] != null ? Contact.fromJson(json['contact']) : null;
+    _contact = json['contact'] != null ? SyContact.fromJson(json['contact']) : null;
     _key = json['key'];
     _lastMessage = json['lastMessage'];
     _localData = json['localData'];
@@ -73,7 +75,7 @@ class SyConversation {
   }
   String? _associationId;
   String? _avatar;
-  Contact? _contact;
+  SyContact? _contact;
   String? _key;
   dynamic _lastMessage;
   bool? _localData;
@@ -89,7 +91,7 @@ class SyConversation {
   num? _updateTimeStamp;
 SyConversation copyWith({  String? associationId,
   String? avatar,
-  Contact? contact,
+  SyContact? contact,
   String? key,
   dynamic lastMessage,
   bool? localData,
@@ -122,7 +124,7 @@ SyConversation copyWith({  String? associationId,
 );
   String? get associationId => _associationId;
   String? get avatar => _avatar;
-  Contact? get contact => _contact;
+  SyContact? get contact => _contact;
   String? get key => _key;
   dynamic get lastMessage => _lastMessage;
   bool? get localData => _localData;

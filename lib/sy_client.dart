@@ -6,9 +6,12 @@ import 'package:sy_im_sdk/common/channel_common.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/data/connect_data.dart';
 import 'package:sy_im_sdk/listener/sy_on_dart_connect_listener.dart';
-import 'package:sy_im_sdk/manager/chat_manager.dart';
-import 'package:sy_im_sdk/manager/conversation_manager.dart';
+
+import 'package:sy_im_sdk/manager/chat_manager_interface.dart';
+import 'package:sy_im_sdk/manager/conversation_manager_interface.dart';
+import 'package:sy_im_sdk/manager/impl/conversation_manager.dart';
 import 'package:sy_im_sdk/manager/data/sy_auth_info.dart';
+import 'package:sy_im_sdk/manager/impl/chat_manager.dart';
 import 'package:sy_im_sdk/sy_client_interface.dart';
 
 import 'channel/sy_im_sdk_conversation_interface.dart';
@@ -16,9 +19,8 @@ import 'channel/sy_im_sdk_platform_interface.dart';
 import 'listener/sy_call_back.dart';
 
 class SyClient implements SyClientInterface {
-  final ConversationManager _conversationManager = ConversationManager();
-  final ChatManager _chatManager = ChatManager();
-
+  final ConversationManagerInterface _conversationManager = ConversationManager();
+  final ChatManagerInterface _chatManager = ChatManager();
 
   static SyClient? _instance;
 
@@ -96,12 +98,12 @@ class SyClient implements SyClientInterface {
   }
 
   @override
-  ConversationManager getConversationManager() {
+  ConversationManagerInterface getConversationManager() {
     return _conversationManager;
   }
 
   @override
-  ChatManager chatManager() {
+  ChatManagerInterface chatManager() {
     return _chatManager;
   }
 }

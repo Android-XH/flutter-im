@@ -1,4 +1,4 @@
-import 'package:sy_im_sdk/config/sy_environment.dart';
+
 
 /// appId : "1234"
 /// secret : "1234"
