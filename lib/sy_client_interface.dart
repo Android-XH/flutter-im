@@ -6,6 +6,7 @@ import 'channel/sy_im_sdk_conversation_interface.dart';
 import 'config/sy_options.dart';
 import 'listener/sy_on_dart_connect_listener.dart';
 import 'listener/sy_call_back.dart';
+import 'manager/conversation_manager_interface.dart';
 import 'manager/data/sy_auth_info.dart';
 
 abstract class SyClientInterface {
@@ -29,7 +30,7 @@ abstract class SyClientInterface {
   /// 退出登录
   void logOut({required SyCallBack<String> callback});
 
-  ConversationManager getConversationManager();
+  ConversationManagerInterface getConversationManager();
 
   ChatManagerInterface chatManager();
 }
