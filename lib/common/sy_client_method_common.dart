@@ -5,4 +5,5 @@ class SyClientMethodCommon {
   static const String loginByToken = "loginByToken";
   static const String loginByAccountId = "loginByAccountId";
   static const String logout = "logOut";
+  static const String sendMessage = "sendMessage";
 }
