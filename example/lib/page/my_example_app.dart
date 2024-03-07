@@ -152,7 +152,7 @@ class _MyAppState extends State<MyExampleApp> {
                     onPressed: () {
                       SyClient.getInstance()
                           .getConversationManager()
-                          .createSignConversation(
+                          .createSignConversationByUid(
                               uuid: "66666666666666666666666666666666",
                               callback: SyCallBack(
                                   onSuccess: (c) {

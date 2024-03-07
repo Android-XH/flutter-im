@@ -29,7 +29,7 @@ abstract class SyClientInterface {
   /// 退出登录
   void logOut({required SyCallBack<String> callback});
 
-  ConversationManager getConversationManager();
+  ConversationManagerInterface getConversationManager();
 
   ChatManagerInterface chatManager();
 }
