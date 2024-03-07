@@ -1,4 +1,4 @@
-package sy.chat.im.sy_im_sdk.handler.impl;
+package sy.chat.im.sy_im_sdk.handler.impl.client;
 
 import android.content.Context;
 

@@ -1,11 +1,11 @@
 package sy.chat.im.sy_im_sdk.common;
 
 import sy.chat.im.sy_im_sdk.handler.MethodHandler;
-import sy.chat.im.sy_im_sdk.handler.impl.AddConnectListenerHandler;
-import sy.chat.im.sy_im_sdk.handler.impl.GetConversationListHandler;
-import sy.chat.im.sy_im_sdk.handler.impl.LogOutHandler;
-import sy.chat.im.sy_im_sdk.handler.impl.LoginByTokenHandler;
-import sy.chat.im.sy_im_sdk.handler.impl.SyClientInitHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.client.AddConnectListenerHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.GetConversationListHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.client.LogOutHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.client.LoginByTokenHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.client.SyClientInitHandler;
 
 public enum MethodEnum {
 
