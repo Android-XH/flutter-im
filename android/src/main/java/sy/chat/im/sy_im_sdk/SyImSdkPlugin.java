@@ -148,12 +148,12 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
             MethodHandler methodHandler = methodHandlerHashMap.get(method);
             if (methodHandler != null) {
                 methodHandler.onMethodCall(call, result, mContext);
-                return;
+            } else {
+                result.notImplemented();
             }
         } catch (Exception e) {
             result.error("调用失败", e.getMessage(), e);
         }
-        result.notImplemented();
     }
 
     @Override

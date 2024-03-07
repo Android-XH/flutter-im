@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/listener/on_dart_connect_listener.dart';
+import 'package:sy_im_sdk/listener/on_message_listener.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/sy_client.dart';
 
@@ -119,13 +120,30 @@ class _MyAppState extends State<MyExampleApp> {
                 _buildButton(
                     title: "退出登录",
                     onPressed: () {
+                      print("退出登录");
                       SyClient.getInstance().logOut(
                           callback: SyCallBack(onSuccess: (msg) {
                         print("退出登录成功:$msg");
+                        setState(() {
+                          _loginInfo = "已退出登录";
+                        });
                       }, onFail: (code, msg) {
                         print("退出登录失败code:$code msg:$msg");
                       }));
-                    })
+                    }),
+                Container(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "添加消息监听",
+                    onPressed: () {
+                      SyClient.getInstance().chatManager().addMessageListener(
+                          OnMessageListener(
+                              onMessage: (syMessage) {},
+                              onCustomMsg: (syMessage) {},
+                              onCmdMsg: (syMessage) {},
+                              onUnLineMsg: (syMessageList) {}));
+                    }),
               ],
             ),
           )),

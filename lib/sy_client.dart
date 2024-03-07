@@ -6,6 +6,7 @@ import 'package:sy_im_sdk/common/channel_common.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/data/connect_data.dart';
 import 'package:sy_im_sdk/listener/on_dart_connect_listener.dart';
+import 'package:sy_im_sdk/manager/chat_manager.dart';
 import 'package:sy_im_sdk/manager/conversation_manager.dart';
 import 'package:sy_im_sdk/manager/data/auth_info.dart';
 import 'package:sy_im_sdk/sy_client_interface.dart';
@@ -14,15 +15,14 @@ import 'channel/sy_im_sdk_platform_interface.dart';
 import 'listener/sy_call_back.dart';
 
 class SyClient implements SyClientInterface {
-
-  ConversationManager conversationManager=ConversationManager();
+  ConversationManager conversationManager = ConversationManager();
+  final ChatManager _chatManager = ChatManager();
 
   static SyClient? _instance;
 
   List<OnDartConnectListener> onConnectListeners = List.empty(growable: true);
 
   SyClient._();
-
 
   factory SyClient.getInstance() {
     _instance ??= SyClient._();
@@ -98,5 +98,8 @@ class SyClient implements SyClientInterface {
     return conversationManager;
   }
 
-
+  @override
+  ChatManager chatManager() {
+    return _chatManager;
+  }
 }
