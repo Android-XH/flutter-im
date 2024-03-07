@@ -1,4 +1,4 @@
-import '../manager/data/auth_info.dart';
+
 
 class SyCallBack<T> {
   SyCallBack({required this.onSuccess, required this.onFail});

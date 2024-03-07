@@ -4,11 +4,10 @@ import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/manager/data/conversation_info.dart';
 
 import '../listener/sy_call_back.dart';
-import '../manager/data/auth_info.dart';
+
 import 'impl/sy_im_sdk_method_channel.dart';
 
 abstract class SyImSdkConversation extends PlatformInterface {
-  /// Constructs a SyImSdkPlatform.
   SyImSdkConversation() : super(token: _token);
 
   static final Object _token = Object();

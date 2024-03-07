@@ -8,7 +8,7 @@ import 'package:sy_im_sdk/data/connect_data.dart';
 import 'package:sy_im_sdk/listener/on_dart_connect_listener.dart';
 import 'package:sy_im_sdk/manager/chat_manager.dart';
 import 'package:sy_im_sdk/manager/conversation_manager.dart';
-import 'package:sy_im_sdk/manager/data/auth_info.dart';
+import 'package:sy_im_sdk/manager/data/sy_auth_info.dart';
 import 'package:sy_im_sdk/sy_client_interface.dart';
 
 import 'channel/sy_im_sdk_platform_interface.dart';

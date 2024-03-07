@@ -6,7 +6,7 @@ import 'package:sy_im_sdk/manager/data/conversation_info.dart';
 import 'package:sy_im_sdk/manager/data/sy_message.dart';
 
 import '../listener/sy_call_back.dart';
-import '../manager/data/auth_info.dart';
+import '../manager/data/sy_auth_info.dart';
 import 'impl/sy_im_sdk_method_channel.dart';
 
 abstract class SyImSdkChat extends PlatformInterface {
