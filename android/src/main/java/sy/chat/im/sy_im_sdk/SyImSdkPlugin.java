@@ -5,74 +5,128 @@ import android.os.Handler;
 import android.os.Looper;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import org.json.JSONObject;
+import java.util.HashMap;
+import java.util.List;
 
-import java.util.Map;
-
-import io.flutter.Log;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.BasicMessageChannel;
-import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.StringCodec;
 import sy.chat.api.util.GsonUtil;
-import sy.chat.im.SyClient;
-import sy.chat.im.config.SyOptions;
+
+
 import sy.chat.im.dao.bean.AuthInfo;
-
-
+import sy.chat.im.listener.ConversationListener;
 import sy.chat.im.listener.OnConnectListener;
-import sy.chat.im.manager.callBack.SyCallback;
+import sy.chat.im.listener.OnMessageListener;
+import sy.chat.im.manager.data.SyConversation;
+import sy.chat.im.manager.data.SyMessage;
+import sy.chat.im.netty.listener.MessageListener;
 import sy.chat.im.sy_im_sdk.common.ChannelCommon;
-import sy.chat.im.sy_im_sdk.common.MethodCommon;
+import sy.chat.im.sy_im_sdk.common.MethodEnum;
 import sy.chat.im.sy_im_sdk.data.ConnectData;
-import sy.chat.im.util.LogTools;
+import sy.chat.im.sy_im_sdk.data.MessageData;
+import sy.chat.im.sy_im_sdk.handler.MethodHandler;
 
 /**
  * SyImSdkPlugin
  */
 public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
-    /// The MethodChannel that will the communication between Flutter and native Android
-    ///
-    /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-    /// when the Flutter Engine is detached from the Activity
+    //函数调用通道
     private MethodChannel methodChannel;
-
-    private BasicMessageChannel<String> connectChannel;
-
+    //链接监听通道
+    private static BasicMessageChannel<String> connectChannel;
+    //会话监听通道
+    private static BasicMessageChannel<String> conversationChannel;
+    //聊天消息监听通道
+    private static BasicMessageChannel<String> chaMessageChannel;
+    //应用上下文
     private Context mContext;
-    Handler handler = new Handler(Looper.getMainLooper());
-    private OnConnectListener onConnectListener = new OnConnectListener() {
+    //UI主线程
+    private static final Handler handler = new Handler(Looper.getMainLooper());
+
+    private final HashMap<String, MethodHandler> methodHandlerHashMap = new HashMap<>();
+
+    public static final OnConnectListener onConnectListener = new OnConnectListener() {
         @Override
         public void onForcedOffLine() {
-            postData("FORCED_OFFLINE", 500, "用户token失效或在其他设备登录!");
+            postConnectData("FORCED_OFFLINE", 500, "用户token失效或在其他设备登录!");
         }
 
         @Override
         public void onConnectFail(int i, String s) {
-            postData("CONNECT_FAIL", i, s);
+            postConnectData("CONNECT_FAIL", i, s);
         }
 
         @Override
         public void onConnectSuccess() {
-            postData("CONNECT_SUCCESS", 200, "connect success");
+            postConnectData("CONNECT_SUCCESS", 200, "connect success");
         }
 
         @Override
         public void onAuthSuccess(AuthInfo authInfo) {
-            postData("AUTH_SUCCESS", 200, GsonUtil.toJson(authInfo));
+            postConnectData("AUTH_SUCCESS", 200, GsonUtil.toJson(authInfo));
         }
 
         @Override
         public void onAuthFail(String s) {
-            postData("AUTH_FAIL", 500, s);
+            postConnectData("AUTH_FAIL", 500, s);
         }
     };
+
+    public static final ConversationListener conversationListener = new ConversationListener() {
+        @Override
+        public void onChanger(List<SyConversation> list) {
+            postConversationData(list);
+        }
+    };
+
+    public static final OnMessageListener onMessageListener = new OnMessageListener() {
+        @Override
+        public void onMessage(SyMessage syMessage) {
+            MessageData messageData = new MessageData();
+            messageData.setType("onMessage");
+            messageData.setData(GsonUtil.toJson(syMessage));
+            postChatMessageData(messageData);
+        }
+
+        @Override
+        public void onCustomMsg(SyMessage syMessage) {
+            MessageData messageData = new MessageData();
+            messageData.setType("onCustomMsg");
+            messageData.setData(GsonUtil.toJson(syMessage));
+            postChatMessageData(messageData);
+        }
+
+        @Override
+        public void onCmdMsg(SyMessage syMessage) {
+            MessageData messageData = new MessageData();
+            messageData.setType("onCmdMsg");
+            messageData.setData(GsonUtil.toJson(syMessage));
+            postChatMessageData(messageData);
+        }
+
+        @Override
+        public void onUnLineMsg(List<SyMessage> list) {
+            MessageData messageData = new MessageData();
+            messageData.setType("onUnLineMsg");
+            messageData.setData(GsonUtil.toJson(list));
+            postChatMessageData(messageData);
+        }
+
+        @Override
+        public void onStatusChange(List<SyMessage> list) {
+            MessageData messageData = new MessageData();
+            messageData.setType("onStatusChange");
+            messageData.setData(GsonUtil.toJson(list));
+            postChatMessageData(messageData);
+        }
+    };
+
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -80,99 +134,26 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
         methodChannel.setMethodCallHandler(this);
         mContext = flutterPluginBinding.getApplicationContext();
         connectChannel = new BasicMessageChannel<>(flutterPluginBinding.getBinaryMessenger(), ChannelCommon.SY_SDK_CONNECT_CHANNEL, StringCodec.INSTANCE);
+        conversationChannel = new BasicMessageChannel<>(flutterPluginBinding.getBinaryMessenger(), ChannelCommon.SY_CLIENT_CONVERSATION_CHANNEL, StringCodec.INSTANCE);
+        chaMessageChannel = new BasicMessageChannel<>(flutterPluginBinding.getBinaryMessenger(), ChannelCommon.SY_CLIENT_CHAT_MESSAGE_CHANNEL, StringCodec.INSTANCE);
+        for (MethodEnum methodEnum : MethodEnum.values()) {
+            methodHandlerHashMap.put(methodEnum.getMethodName(), methodEnum.getMethodHandler());
+        }
     }
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         String method = call.method;
-
-        Log.i("SyImSdkPlugin", "method=" + method + "[argument=" + call.arguments + "]");
-        switch (method) {
-            case MethodCommon.SY_CLIENT_INIT:
-                try {
-                    if (call.hasArgument("optionsJson")) {
-                        String optionsJson = call.argument("optionsJson");
-                        SyOptions syOptions = GsonUtil.parseData(optionsJson, SyOptions.class);
-                        if (call.hasArgument("environment")) {
-                            String environment = call.argument("environment");
-                            if (environment != null) {
-                                switch (environment) {
-                                    case "prod":
-                                        syOptions.setSyEnvironmentEnum(SyOptions.SyEnvironmentEnum.PROD);
-                                        break;
-                                    case "dev":
-                                    default:
-                                        syOptions.setSyEnvironmentEnum(SyOptions.SyEnvironmentEnum.DEV);
-                                        break;
-                                }
-                            }
-                        }
-                        Log.i("SyImSdkPlugin", "syOptions=" + syOptions);
-                        SyClient.getInstance().init(mContext, syOptions);
-                    } else {
-                        SyClient.getInstance().init(mContext);
-                    }
-                    //初始化成功，注册链接监听
-                    SyClient.getInstance().addConnectListener(onConnectListener);
-                    result.success("sdk init success");
-                } catch (Exception e) {
-                    result.error("500", e.getMessage(), e);
-                }
-                break;
-            case MethodCommon.SY_CLIENT_LOGIN_BY_TOKEN:
-                if (call.hasArgument("token")) {
-                    SyClient.getInstance().loginByToken(call.argument("token"), new SyCallback<AuthInfo>() {
-                        @Override
-                        public void onSuccess(AuthInfo authInfo) {
-                            result.success(GsonUtil.toJson(authInfo));
-                        }
-
-                        @Override
-                        public void onFail(int i, String s) {
-                            result.error(String.valueOf(i), s, "login failed:" + s);
-                        }
-                    });
-                } else {
-                    result.error("500", "token is null!", "Argument not found token key!");
-                }
-                break;
-            case MethodCommon.SY_CLIENT_LOGIN_BY_ACCOUNT_ID:
-                if (call.hasArgument("uuid")) {
-                    SyClient.getInstance().loginByAccountId(call.argument("uuid"), new SyCallback<AuthInfo>() {
-                        @Override
-                        public void onSuccess(AuthInfo authInfo) {
-                            result.success(GsonUtil.toJson(authInfo));
-                        }
-
-                        @Override
-                        public void onFail(int i, String s) {
-                            result.error(String.valueOf(i), s, "login failed:" + s);
-                        }
-                    });
-                } else {
-                    result.error("500", "uuid is null!", "Argument not found uuid key!");
-                }
-                break;
-            case MethodCommon.SY_CLIENT_LOGOUT:
-                SyClient.getInstance().logOut(new SyCallback<String>() {
-                    @Override
-                    public void onSuccess(String s) {
-                        result.success(s);
-                    }
-
-                    @Override
-                    public void onFail(int i, String s) {
-                        result.error(String.valueOf(i), s, "logOut fail:" + s);
-                    }
-                });
-                break;
-
-            default:
+        try {
+            MethodHandler methodHandler = methodHandlerHashMap.get(method);
+            if (methodHandler != null) {
+                methodHandler.onMethodCall(call, result, mContext);
+            } else {
                 result.notImplemented();
-                break;
+            }
+        } catch (Exception e) {
+            result.error("调用失败", e.getMessage(), e);
         }
-
-
     }
 
     @Override
@@ -181,13 +162,10 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
 
     }
 
-
-    private void postData(String type, int code, String msg) {
-
+    public static void postConnectData(String type, int code, String msg) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                // 在主线程中执行需要的操作
                 ConnectData connectData = new ConnectData();
                 connectData.setType(type);
                 connectData.setCode(code);
@@ -195,7 +173,25 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
                 connectChannel.send(GsonUtil.toJson(connectData));
             }
         });
+    }
 
+    //回调会话
+    public static void postConversationData(List<SyConversation> list) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                conversationChannel.send(GsonUtil.toJson(list));
+            }
+        });
+    }
 
+    //回调消息
+    public static void postChatMessageData(MessageData messageData) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                chaMessageChannel.send(GsonUtil.toJson(messageData));
+            }
+        });
     }
 }
