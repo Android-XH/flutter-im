@@ -1,0 +1,15 @@
+[
+  {
+    "title": "初始化",
+    "children": [
+      {
+        "title": "构造配置项目",
+        "className": "CreateSyOptions"
+      },
+      {
+        "title": "调用INIT",
+        "className": "SyClientInit"
+      }
+    ]
+  }
+]
