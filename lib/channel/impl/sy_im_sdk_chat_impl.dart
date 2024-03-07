@@ -8,6 +8,7 @@ import 'package:sy_im_sdk/common/sy_client_method_common.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/manager/data/sy_message.dart';
 
+import '../../listener/sy_call_back.dart';
 import '../sy_im_sdk_platform_interface.dart';
 
 /// An implementation of [SyImSdkPlatform] that uses method channels.
