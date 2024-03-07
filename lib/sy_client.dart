@@ -6,6 +6,7 @@ import 'package:sy_im_sdk/common/channel_common.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/data/connect_data.dart';
 import 'package:sy_im_sdk/listener/on_dart_connect_listener.dart';
+import 'package:sy_im_sdk/manager/conversation_manager.dart';
 import 'package:sy_im_sdk/manager/data/auth_info.dart';
 import 'package:sy_im_sdk/sy_client_interface.dart';
 
@@ -13,11 +14,15 @@ import 'channel/sy_im_sdk_platform_interface.dart';
 import 'listener/sy_call_back.dart';
 
 class SyClient implements SyClientInterface {
+
+  ConversationManager conversationManager=ConversationManager();
+
   static SyClient? _instance;
 
   List<OnDartConnectListener> onConnectListeners = List.empty(growable: true);
 
   SyClient._();
+
 
   factory SyClient.getInstance() {
     _instance ??= SyClient._();
@@ -87,4 +92,11 @@ class SyClient implements SyClientInterface {
   void logOut({required SyCallBack<String> callback}) {
     SyImSdkPlatform.instance.logOut(callback: callback);
   }
+
+  @override
+  ConversationManager getConversationManager() {
+    return conversationManager;
+  }
+
+
 }
