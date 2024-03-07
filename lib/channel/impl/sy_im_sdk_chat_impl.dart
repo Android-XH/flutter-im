@@ -27,22 +27,34 @@ class SyImSdkChatImpl extends SyImSdkChat {
   @override
   Future<void> sendMessage(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
-    return methodChannel.invokeMethod(
-        SyClientMethodCommon.sendMessage, _createMessageArguments(syMessage));
+    return methodChannel
+        .invokeMethod(SyClientMethodCommon.sendMessage,
+            _createMessageArguments(syMessage))
+        .then((value) => callBack.onSuccess
+            .call(SyMessage.fromJson(jsonDecode(value.toString()))))
+        .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
   @override
   Future<void> saveMessageToLocal(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
-    return methodChannel.invokeMethod(SyClientMethodCommon.saveMessageToLocal,
-        _createMessageArguments(syMessage));
+    return methodChannel
+        .invokeMethod(SyClientMethodCommon.saveMessageToLocal,
+            _createMessageArguments(syMessage))
+        .then((value) => callBack.onSuccess
+            .call(SyMessage.fromJson(jsonDecode(value.toString()))))
+        .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
   @override
   Future<void> updateMessage(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
-    return methodChannel.invokeMethod(
-        SyClientMethodCommon.updateMessage, _createMessageArguments(syMessage));
+    return methodChannel
+        .invokeMethod(SyClientMethodCommon.updateMessage,
+            _createMessageArguments(syMessage))
+        .then((value) => callBack.onSuccess
+            .call(SyMessage.fromJson(jsonDecode(value.toString()))))
+        .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
   @override
@@ -50,8 +62,10 @@ class SyImSdkChatImpl extends SyImSdkChat {
       {required String msgId, required SyCallBack<bool> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("msgId", () => msgId);
-    return methodChannel.invokeMethod(
-        SyClientMethodCommon.deleteMessage, arguments);
+    return methodChannel
+        .invokeMethod(SyClientMethodCommon.deleteMessage, arguments)
+        .then((value) => callBack.onSuccess.call(value))
+        .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
   @override
@@ -59,8 +73,11 @@ class SyImSdkChatImpl extends SyImSdkChat {
       {required String sessionId, required SyCallBack<SyMessage> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("sessionId", () => sessionId);
-    return methodChannel.invokeMethod(
-        SyClientMethodCommon.saveMessageToLocal, arguments);
+    return methodChannel
+        .invokeMethod(SyClientMethodCommon.saveMessageToLocal, arguments)
+        .then((value) => callBack.onSuccess
+            .call(SyMessage.fromJson(jsonDecode(value.toString()))))
+        .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
   @override
@@ -70,8 +87,14 @@ class SyImSdkChatImpl extends SyImSdkChat {
       required SyCallBack<List<SyMessage>> callBack}) {
     Map<String, String> arguments = _createMessageArguments(starMessage);
     arguments.putIfAbsent("pageSize", () => pageSize.toString());
-    return methodChannel.invokeMethod(
-        SyClientMethodCommon.getMessageList, arguments);
+    return methodChannel
+        .invokeMethod(SyClientMethodCommon.getMessageList, arguments)
+        .then((value) {
+      List<dynamic> list = jsonDecode(value);
+      callBack.onSuccess.call(list.map((e) => SyMessage.fromJson(e)).toList());
+    }).catchError((e) {
+      callBack.onFail.call(e.code, e.message!);
+    });
   }
 
   @override
@@ -79,7 +102,10 @@ class SyImSdkChatImpl extends SyImSdkChat {
       {required String msgId, required SyCallBack<SyMessage> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("msgId", () => msgId);
-    return methodChannel.invokeMethod(
-        SyClientMethodCommon.getMessage, arguments);
+    return methodChannel
+        .invokeMethod(SyClientMethodCommon.getMessage, arguments)
+        .then((value) => callBack.onSuccess
+            .call(SyMessage.fromJson(jsonDecode(value.toString()))))
+        .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 }
