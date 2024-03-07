@@ -27,6 +27,9 @@ public class LoginByTokenHandler implements MethodHandler {
                     result.error(String.valueOf(i), s, "login failed:" + s);
                 }
             });
+
+
+
         } else {
             result.error("500", "token is null!", "Argument not found token key!");
         }

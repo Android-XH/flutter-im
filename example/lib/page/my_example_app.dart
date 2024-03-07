@@ -74,7 +74,7 @@ class _MyAppState extends State<MyExampleApp> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Text('login userInfo is: $_connectStatus'),
+                  child: Text('connect is: $_connectStatus'),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 10, bottom: 10),
