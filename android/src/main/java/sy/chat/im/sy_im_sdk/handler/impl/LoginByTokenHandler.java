@@ -10,6 +10,7 @@ import sy.chat.api.util.GsonUtil;
 import sy.chat.im.SyClient;
 import sy.chat.im.dao.bean.AuthInfo;
 import sy.chat.im.manager.callBack.SyCallback;
+import sy.chat.im.sy_im_sdk.common.MethodEnum;
 import sy.chat.im.sy_im_sdk.handler.MethodHandler;
 
 public class LoginByTokenHandler implements MethodHandler {
@@ -36,7 +37,7 @@ public class LoginByTokenHandler implements MethodHandler {
     }
 
     @Override
-    public String className() {
-        return null;
+    public String methodName() {
+        return MethodEnum.SY_CLIENT_LOGIN_BY_TOKEN.getMethodName();
     }
 }
