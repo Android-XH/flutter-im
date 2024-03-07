@@ -30,16 +30,51 @@ abstract class SyImSdkChat extends PlatformInterface {
   }
 
   Future<void> sendMessage(
-      {required SyMessage syMessage,
-      required SyCallBack<SyMessage> callback}) {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
+    throw UnimplementedError('sendMessage() has not been implemented.');
   }
 
+  ///保存消息到本地
   Future<void> saveMessageToLocal(
-      {required SyMessage syMessage,
-        required SyCallBack<SyMessage> callback}) {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
+    throw UnimplementedError('saveMessageToLocal() has not been implemented.');
   }
 
+  /// 获取消息
+  /// @param syMessage
+  Future<void> getMessage(
+      {required String msgId, required SyCallBack<SyMessage> callBack}) {
+    throw UnimplementedError('getMessage() has not been implemented.');
+  }
 
+  /// 更新消息
+  /// @param syMessage
+  Future<void> updateMessage(
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
+    throw UnimplementedError('updateMessage() has not been implemented.');
+  }
+
+  /// 获取会话最后一条消息记录
+  /// @param sessionId 会话ID
+  Future<void> getLastMessage(
+      {required String sessionId, required SyCallBack<SyMessage> callBack}) {
+    throw UnimplementedError('getLastMessage() has not been implemented.');
+  }
+
+  /// 查询历史消息
+  /// @param starMessage 起始消息
+  /// @param pageSize    查询条数
+  Future<void> getMessageList(
+      {required SyMessage starMessage,
+      required int pageSize,
+      required SyCallBack<List<SyMessage>> callBack}) {
+    throw UnimplementedError('getMessageList() has not been implemented.');
+  }
+
+  /// 删除消息
+  /// @param msgId
+  Future<void> deleteMessage(
+      {required String msgId, required SyCallBack<bool> callBack}) {
+    throw UnimplementedError('deleteMessage() has not been implemented.');
+  }
 }

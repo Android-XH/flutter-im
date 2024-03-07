@@ -22,6 +22,9 @@ class ChatManager implements ChatManagerInterface {
   final List<OnMessageListener> _messageList = List.empty(growable: true);
 
   @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+
+  @override
   void addMessageListener(OnMessageListener onMessageListener) {
     _messageList.add(onMessageListener);
   }
@@ -34,9 +37,50 @@ class ChatManager implements ChatManagerInterface {
   @override
   void sendMessage(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
-    SyImSdkChat.instance.sendMessage(syMessage: syMessage, callback: callBack);
-  }
+    SyImSdkChat.instance.sendMessage(syMessage: syMessage, callBack: callBack);
 
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+    @override
+    void deleteMessage(
+        {required String msgId, required SyCallBack<bool> callBack}) {
+      SyImSdkChat.instance.deleteMessage(msgId: msgId, callBack: callBack);
+    }
+
+    @override
+    void getLastMessage(
+        {required String sessionId, required SyCallBack<SyMessage> callBack}) {
+      SyImSdkChat.instance
+          .getLastMessage(sessionId: sessionId, callBack: callBack);
+    }
+
+    @override
+    void getMessage(
+        {required String msgId, required SyCallBack<SyMessage> callBack}) {
+      SyImSdkChat.instance.getMessage(msgId: msgId, callBack: callBack);
+    }
+
+    @override
+    void getMessageList(
+        {required SyMessage starMessage,
+        required int pageSize,
+        required SyCallBack<List<SyMessage>> callBack}) {
+      SyImSdkChat.instance.getMessageList(
+          starMessage: starMessage, pageSize: pageSize, callBack: callBack);
+    }
+
+    @override
+    void saveMessageToLocal(
+        {required SyMessage syMessage,
+        required SyCallBack<SyMessage> callBack}) {
+      SyImSdkChat.instance
+          .saveMessageToLocal(syMessage: syMessage, callBack: callBack);
+    }
+
+    @override
+    void updateMessage(
+        {required SyMessage syMessage,
+        required SyCallBack<SyMessage> callBack}) {
+      SyImSdkChat.instance
+          .updateMessage(syMessage: syMessage, callBack: callBack);
+    }
+  }
 }

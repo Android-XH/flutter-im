@@ -21,33 +21,33 @@ abstract class ChatManagerInterface {
   /// @param msgId    消息ID
   /// @param callback
   void getMessage(
-      {required String msgId, required SyCallBack<SyMessage> callback});
+      {required String msgId, required SyCallBack<SyMessage> callBack});
 
   /// 保存到消息到本地，并不发送到服务器
   /// @param syMessage
   void saveMessageToLocal(
-      {required SyMessage syMessage, required SyCallBack<SyMessage> callback});
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack});
 
   /// 更新消息
   /// @param syMessage
   void updateMessage(
-      {required SyMessage syMessage, required SyCallBack<SyMessage> callback});
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack});
 
   /// 获取会话最后一条消息记录
   /// @param sessionId 会话ID
   void getLastMessage(
-      {required String sessionId, required SyCallBack<SyMessage> callback});
+      {required String sessionId, required SyCallBack<SyMessage> callBack});
 
   /// 查询历史消息
   /// @param starMessage 起始消息，初始化可传入空
   /// @param pageSize    查询条数
   void getMessageList(
-      {SyMessage starMessage,
+      {required SyMessage starMessage,
       required int pageSize,
-      required SyCallBack<List<SyMessage>> callback});
+      required SyCallBack<List<SyMessage>> callBack});
 
   /// 删除消息
   /// @param msgId
   void deleteMessage(
-      {required String msgId, required SyCallBack<bool> syCallback});
+      {required String msgId, required SyCallBack<bool> callBack});
 }

@@ -18,12 +18,68 @@ class SyImSdkChatImpl extends SyImSdkChat {
   final methodChannel =
       const MethodChannel(ChannelCommon.syClientMethodChannel);
 
-  @override
-  Future<void> sendMessage(
-      {required SyMessage syMessage, required SyCallBack<SyMessage> callback}) {
+  Map<String, String> _createMessageArguments(SyMessage syMessage) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("syMessage", () => jsonEncode(syMessage));
+    return arguments;
+  }
+
+  @override
+  Future<void> sendMessage(
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
     return methodChannel.invokeMethod(
-        SyClientMethodCommon.sendMessage, arguments);
+        SyClientMethodCommon.sendMessage, _createMessageArguments(syMessage));
+  }
+
+  @override
+  Future<void> saveMessageToLocal(
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
+    return methodChannel.invokeMethod(SyClientMethodCommon.saveMessageToLocal,
+        _createMessageArguments(syMessage));
+  }
+
+  @override
+  Future<void> updateMessage(
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
+    return methodChannel.invokeMethod(
+        SyClientMethodCommon.updateMessage, _createMessageArguments(syMessage));
+  }
+
+  @override
+  Future<void> deleteMessage(
+      {required String msgId, required SyCallBack<bool> callBack}) {
+    Map<String, String> arguments = {};
+    arguments.putIfAbsent("msgId", () => msgId);
+    return methodChannel.invokeMethod(
+        SyClientMethodCommon.deleteMessage, arguments);
+  }
+
+  @override
+  Future<void> getLastMessage(
+      {required String sessionId, required SyCallBack<SyMessage> callBack}) {
+    Map<String, String> arguments = {};
+    arguments.putIfAbsent("sessionId", () => sessionId);
+    return methodChannel.invokeMethod(
+        SyClientMethodCommon.saveMessageToLocal, arguments);
+  }
+
+  @override
+  Future<void> getMessageList(
+      {required SyMessage starMessage,
+      required int pageSize,
+      required SyCallBack<List<SyMessage>> callBack}) {
+    Map<String, String> arguments = _createMessageArguments(starMessage);
+    arguments.putIfAbsent("pageSize", () => pageSize.toString());
+    return methodChannel.invokeMethod(
+        SyClientMethodCommon.getMessageList, arguments);
+  }
+
+  @override
+  Future<void> getMessage(
+      {required String msgId, required SyCallBack<SyMessage> callBack}) {
+    Map<String, String> arguments = {};
+    arguments.putIfAbsent("msgId", () => msgId);
+    return methodChannel.invokeMethod(
+        SyClientMethodCommon.getMessage, arguments);
   }
 }
