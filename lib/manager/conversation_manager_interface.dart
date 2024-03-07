@@ -3,6 +3,7 @@ import 'dart:ffi';
 import '../common/session_type.dart';
 import '../listener/sy_call_back.dart';
 import '../listener/sy_conversation_listener.dart';
+import 'data/sy_contact.dart';
 import 'data/sy_conversation.dart';
 
 abstract class ConversationManagerInterface {
