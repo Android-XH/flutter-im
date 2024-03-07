@@ -32,7 +32,11 @@ class ChatManager implements ChatManagerInterface {
   }
 
   @override
-  void sendMessage(SyMessage syMessage, SyCallBack<SyMessage> callBack) {
+  void sendMessage(
+      {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
     SyImSdkChat.instance.sendMessage(syMessage: syMessage, callback: callBack);
   }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

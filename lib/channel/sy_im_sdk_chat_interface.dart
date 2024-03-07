@@ -35,6 +35,11 @@ abstract class SyImSdkChat extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
+  Future<void> saveMessageToLocal(
+      {required SyMessage syMessage,
+        required SyCallBack<SyMessage> callback}) {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
 
 
 }
