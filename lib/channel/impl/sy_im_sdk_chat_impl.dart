@@ -25,9 +25,9 @@ class SyImSdkChatImpl extends SyImSdkChat {
   }
 
   @override
-  Future<void> sendMessage(
+  void sendMessage(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
-    return methodChannel
+    methodChannel
         .invokeMethod(SyClientMethodCommon.sendMessage,
             _createMessageArguments(syMessage))
         .then((value) => callBack.onSuccess
@@ -36,9 +36,9 @@ class SyImSdkChatImpl extends SyImSdkChat {
   }
 
   @override
-  Future<void> saveMessageToLocal(
+  void saveMessageToLocal(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
-    return methodChannel
+    methodChannel
         .invokeMethod(SyClientMethodCommon.saveMessageToLocal,
             _createMessageArguments(syMessage))
         .then((value) => callBack.onSuccess
@@ -47,9 +47,9 @@ class SyImSdkChatImpl extends SyImSdkChat {
   }
 
   @override
-  Future<void> updateMessage(
+  void updateMessage(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
-    return methodChannel
+    methodChannel
         .invokeMethod(SyClientMethodCommon.updateMessage,
             _createMessageArguments(syMessage))
         .then((value) => callBack.onSuccess
@@ -58,22 +58,22 @@ class SyImSdkChatImpl extends SyImSdkChat {
   }
 
   @override
-  Future<void> deleteMessage(
+  void deleteMessage(
       {required String msgId, required SyCallBack<bool> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("msgId", () => msgId);
-    return methodChannel
+    methodChannel
         .invokeMethod(SyClientMethodCommon.deleteMessage, arguments)
         .then((value) => callBack.onSuccess.call(value))
         .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
   @override
-  Future<void> getLastMessage(
+  void getLastMessage(
       {required String sessionId, required SyCallBack<SyMessage> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("sessionId", () => sessionId);
-    return methodChannel
+    methodChannel
         .invokeMethod(SyClientMethodCommon.saveMessageToLocal, arguments)
         .then((value) => callBack.onSuccess
             .call(SyMessage.fromJson(jsonDecode(value.toString()))))
@@ -81,13 +81,13 @@ class SyImSdkChatImpl extends SyImSdkChat {
   }
 
   @override
-  Future<void> getMessageList(
+  void getMessageList(
       {required SyMessage starMessage,
       required int pageSize,
       required SyCallBack<List<SyMessage>> callBack}) {
     Map<String, String> arguments = _createMessageArguments(starMessage);
     arguments.putIfAbsent("pageSize", () => pageSize.toString());
-    return methodChannel
+    methodChannel
         .invokeMethod(SyClientMethodCommon.getMessageList, arguments)
         .then((value) {
       List<dynamic> list = jsonDecode(value);
@@ -98,11 +98,11 @@ class SyImSdkChatImpl extends SyImSdkChat {
   }
 
   @override
-  Future<void> getMessage(
+  void getMessage(
       {required String msgId, required SyCallBack<SyMessage> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("msgId", () => msgId);
-    return methodChannel
+    methodChannel
         .invokeMethod(SyClientMethodCommon.getMessage, arguments)
         .then((value) => callBack.onSuccess
             .call(SyMessage.fromJson(jsonDecode(value.toString()))))
