@@ -19,7 +19,7 @@ import 'listener/sy_call_back.dart';
 
 class SyClient implements SyClientInterface {
   final ConversationManager _conversationManager = ConversationManager();
-  final ChatManager _chatManager = ChatManager();
+  final ChatManagerInterface _chatManager = ChatManager();
 
   static SyClient? _instance;
 
