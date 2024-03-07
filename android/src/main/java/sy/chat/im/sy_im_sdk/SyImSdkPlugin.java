@@ -182,7 +182,7 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
     }
 
 
-    private void postData(String type, int code, String msg) {
+    private void postConnectData(String type, int code, String msg) {
 
         handler.post(new Runnable() {
             @Override
