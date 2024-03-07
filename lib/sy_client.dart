@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:sy_im_sdk/common/channel_common.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/data/connect_data.dart';
-import 'package:sy_im_sdk/listener/on_dart_connect_listener.dart';
+import 'package:sy_im_sdk/listener/sy_on_dart_connect_listener.dart';
 import 'package:sy_im_sdk/manager/chat_manager.dart';
 import 'package:sy_im_sdk/manager/conversation_manager.dart';
 import 'package:sy_im_sdk/manager/data/sy_auth_info.dart';

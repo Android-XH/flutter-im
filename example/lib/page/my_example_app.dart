@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
-import 'package:sy_im_sdk/listener/on_dart_connect_listener.dart';
-import 'package:sy_im_sdk/listener/on_message_listener.dart';
+import 'package:sy_im_sdk/listener/sy_on_dart_connect_listener.dart';
+import 'package:sy_im_sdk/listener/sy_on_message_listener.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/sy_client.dart';
 

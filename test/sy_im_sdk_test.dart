@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
-import 'package:sy_im_sdk/manager/data/auth_info.dart';
+import 'package:sy_im_sdk/manager/data/sy_auth_info.dart';
 
 import 'package:sy_im_sdk/sy_client.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:sy_im_sdk/channel/sy_im_sdk_chat_interface.dart';
-import 'package:sy_im_sdk/listener/on_message_listener.dart';
+import 'package:sy_im_sdk/listener/sy_on_message_listener.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/manager/data/sy_message.dart';
 
