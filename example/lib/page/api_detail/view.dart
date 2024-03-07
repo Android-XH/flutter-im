@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sy_im_sdk_example/page/api_detail/widgets/edit_options_widget.dart';
+import 'package:sy_im_sdk_example/page/api_detail/widgets/edit_sy_client_init_widget.dart';
 
 import 'logic.dart';
 
@@ -41,11 +42,12 @@ class ApiDetailPage extends StatelessWidget {
                   ),
                 ),
                 Visibility(
-                    visible: Theme.of(context).platform==TargetPlatform.android||Theme.of(context).platform==TargetPlatform.iOS,
-                    child: Column(children: [
-                  _buildEdit(),
-                  _buildResult()
-                ],))
+                    visible:
+                        Theme.of(context).platform == TargetPlatform.android ||
+                            Theme.of(context).platform == TargetPlatform.iOS,
+                    child: Column(
+                      children: [_buildEdit(), _buildResult()],
+                    ))
               ],
             ),
           );
@@ -63,22 +65,24 @@ class ApiDetailPage extends StatelessWidget {
       case "CreateSyOptions":
         return const EditOptionsWidget();
       case "SyClientInit":
-        return Container();
+        return const EditSyClientInitWidget();
     }
   }
 
   _buildResult() {
-    return Obx(() => Card(
+    return Obx(() => Container(
+        height: 200,
+        width: double.infinity,
+        margin: const EdgeInsets.only(left: 20, right: 20,bottom: 20),
+        child:Card(
           color: Colors.black,
-          child: SizedBox(
-            height: 300,
-            child: Center(
-              child: Text(
-                state.result.value,
-                style: TextStyle(color: Colors.white),
-              ),
-            )
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              state.result.value,
+              style: const TextStyle(color: Colors.white),
+            ),
           )
-        ));
+        )));
   }
 }
