@@ -11,5 +11,4 @@ public interface MethodHandler {
 
     void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result, Context context);
 
-    String methodName();
 }

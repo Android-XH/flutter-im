@@ -8,7 +8,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import sy.chat.im.SyClient;
 import sy.chat.im.manager.callBack.SyCallback;
-import sy.chat.im.sy_im_sdk.common.MethodEnum;
 import sy.chat.im.sy_im_sdk.handler.MethodHandler;
 
 public class LogOutHandler implements MethodHandler {
@@ -27,8 +26,4 @@ public class LogOutHandler implements MethodHandler {
         });
     }
 
-    @Override
-    public String methodName() {
-        return MethodEnum.SY_CLIENT_LOGOUT.getMethodName();
-    }
 }

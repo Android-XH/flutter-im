@@ -10,8 +10,6 @@ import io.flutter.plugin.common.MethodChannel;
 import sy.chat.api.util.GsonUtil;
 import sy.chat.im.SyClient;
 import sy.chat.im.config.SyOptions;
-import sy.chat.im.sy_im_sdk.common.MethodCommon;
-import sy.chat.im.sy_im_sdk.common.MethodEnum;
 import sy.chat.im.sy_im_sdk.handler.MethodHandler;
 
 public class SyClientInitHandler implements MethodHandler {
@@ -42,8 +40,4 @@ public class SyClientInitHandler implements MethodHandler {
             result.success("sdk init success");
     }
 
-    @Override
-    public String methodName() {
-        return MethodEnum.SY_CLIENT_INIT.getMethodName();
-    }
 }
