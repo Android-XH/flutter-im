@@ -66,13 +66,13 @@ class ConversationManager extends ConversationManagerInterface {
   }
 
   @override
-  Long getAllUnReadNum() {
-    return SyImSdkConversation.instance.getAllUnReadNum();
+  Future<Long> getAllUnReadNum() async{
+    return  SyImSdkConversation.instance.getAllUnReadNum();
   }
 
   @override
-  Long getAllUnReadNumBySessionType({required SessionType sessionType}) {
-    return SyImSdkConversation.instance
+  Future<Long> getAllUnReadNumBySessionType({required SessionType sessionType}) async{
+    return await SyImSdkConversation.instance
         .getAllUnReadNumBySessionType(sessionType: sessionType);
   }
 
@@ -83,13 +83,13 @@ class ConversationManager extends ConversationManagerInterface {
   }
 
   @override
-  String getSessionIdByUserId(String userId) {
-    return SyImSdkConversation.instance.getSessionIdByUserId(userId);
+  Future<String> getSessionIdByUserId(String userId) async {
+    return await SyImSdkConversation.instance.getSessionIdByUserId(userId);
   }
 
   @override
-  Long getUnReadNum(String sessionId) {
-    return SyImSdkConversation.instance.getUnReadNum(sessionId);
+  Future<Long> getUnReadNum(String sessionId) async {
+    return await SyImSdkConversation.instance.getUnReadNum(sessionId);
   }
 
   @override

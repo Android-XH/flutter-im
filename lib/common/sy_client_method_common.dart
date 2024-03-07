@@ -12,4 +12,14 @@ class SyClientMethodCommon {
   static const String deleteMessage = "deleteMessage";
   static const String updateMessage = "updateMessage";
   static const String getMessage = "getMessage";
+  static const String getConversationList = "getConversationList";
+  static const String addChatting = "addChatting";
+  static const String getAllUnReadNum = "getAllUnReadNum";
+  static const String getSessionIdByUserId = "getSessionIdByUserId";
+  static const String getUnReadNum = "getUnReadNum";
+  static const String removeChatting = "removeChatting";
+  static const String removeConversation = "removeConversation";
+  static const String restUnReadCount = "restUnReadCount";
+  static const String setConversationTopping = "setConversationTopping";
+
 }

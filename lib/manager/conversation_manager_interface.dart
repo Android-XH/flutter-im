@@ -73,14 +73,14 @@ abstract class ConversationManagerInterface {
   /**
    * 获取会话未读消息数
    */
-  Long getUnReadNum(String sessionId);
+  Future<Long> getUnReadNum(String sessionId);
 
   /**
    * 获取所有会话未读消息数
    *
    * @return
    */
-  Long getAllUnReadNum();
+  Future<Long> getAllUnReadNum();
 
   /**
    * 根据用户ID获取当前会话ID，仅私聊可用
@@ -88,7 +88,7 @@ abstract class ConversationManagerInterface {
    * @param userId
    * @return
    */
-  String getSessionIdByUserId(String userId);
+  Future<String> getSessionIdByUserId(String userId);
 
   /**
    * 刷新会话未读消息数量
@@ -96,5 +96,5 @@ abstract class ConversationManagerInterface {
    */
   void restUnReadCount(String sessionId);
 
-  Long getAllUnReadNumBySessionType({required SessionType sessionType});
+  Future<Long> getAllUnReadNumBySessionType({required SessionType sessionType});
 }
