@@ -5,14 +5,14 @@ import 'package:sy_im_sdk/listener/on_dart_connect_listener.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/sy_client.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyExampleApp extends StatefulWidget {
+  const MyExampleApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyExampleApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyExampleApp> {
   String _connectStatus = 'Unknown';
   String _loginInfo = 'Unknown';
 
