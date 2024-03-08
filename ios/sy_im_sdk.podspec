@@ -17,9 +17,8 @@ A new Flutter project.
   s.public_header_files = 'Classes/**/*.h'
   s.platform = :ios, '12.0'
   s.dependency 'Flutter'
-#  s.dependency 'SYIM'
+  s.dependency 'SYIM'
 #  s.dependency 'MJExtension'
-  s.dependency 'SYIM', '0.2.6'
   
 
   # Flutter.framework does not contain a i386 slice.
