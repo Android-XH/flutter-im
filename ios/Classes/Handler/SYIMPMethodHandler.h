@@ -7,6 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import <Flutter/Flutter.h>
+#import <SYIM/SYIM.h>
+#import <MJExtension/MJExtension.h>
+#import "SyImSdkPlugin.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
