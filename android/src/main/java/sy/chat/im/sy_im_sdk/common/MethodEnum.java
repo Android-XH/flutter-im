@@ -3,11 +3,19 @@ package sy.chat.im.sy_im_sdk.common;
 import sy.chat.im.sy_im_sdk.handler.MethodHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.AddConnectListenerHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.LoginByUuidHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.AddChattingHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.GetAllUnReadNumHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.conversation.GetConversationListHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.LogOutHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.LoginByTokenHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.SyClientInitHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.conversation.CreateSignConversationHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.GetSessionIdByUserIdHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.GetUnReadNumHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.RemoveConversationHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.RestUnReadCountHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.RemoveChattingHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.conversation.SetConversationToppingHandler;
 
 
 public enum MethodEnum {
@@ -19,7 +27,20 @@ public enum MethodEnum {
 
     SY_CLIENT_ADD_CONNECT_LISTENER("addConnectListener", new AddConnectListenerHandler()),
     SY_CLIENT_GET_CONVERSATION_LIST("getConversationList", new GetConversationListHandler()),
-    CREATE_SIGN_CONVERSATION("createSignConversation", new CreateSignConversationHandler());
+    CREATE_SIGN_CONVERSATION("createSignConversation", new CreateSignConversationHandler()),
+
+    ADD_CHATTING("addChatting", new AddChattingHandler()),
+    GET_ALL_UNREADNUM("getAllUnReadNum", new GetAllUnReadNumHandler()),
+    GET_SESSIONID_BY_USERID("getSessionIdByUserId", new GetSessionIdByUserIdHandler()),
+    GET_UNREAD_NUM("getUnReadNum", new GetUnReadNumHandler()),
+    REMOVE_CHATTING("removeChatting", new RemoveChattingHandler()),
+    REMOVE_CONVERSATION("removeConversation", new RemoveConversationHandler()),
+    REST_UNREAD_COUNT("restUnReadCount", new RestUnReadCountHandler()),
+    SET_CONVERSATION_TOPPING("setConversationTopping", new SetConversationToppingHandler());
+
+
+
+
 
     MethodEnum(String methodName, MethodHandler methodHandler) {
         this.methodHandler = methodHandler;
