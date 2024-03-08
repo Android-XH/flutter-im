@@ -11,6 +11,7 @@ import 'package:sy_im_sdk_example/page/api_detail/widgets/sy_client/edit_sy_clie
 import 'package:sy_im_sdk_example/page/api_detail/widgets/sy_client/edit_sy_login_by_token.dart';
 
 import 'logic.dart';
+import 'widgets/sy_client/edit_sy_login_by_uuid.dart';
 
 class ApiDetailPage extends StatelessWidget {
   ApiDetailPage({super.key});
@@ -73,6 +74,8 @@ class ApiDetailPage extends StatelessWidget {
         return const EditOptionsWidget();
       case "SyClientInit":
         return const EditSyClientInitWidget();
+      case 'SyLoginByUuid':
+        return const EditSyLoginByUuidWidget();
       case "SyLoginByUserName":
         return const EditSyLoginByToken();
       case "AddMessageListener":

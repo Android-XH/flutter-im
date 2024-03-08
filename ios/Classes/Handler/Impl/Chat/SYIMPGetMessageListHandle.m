@@ -19,7 +19,7 @@
         NSInteger pageSize = [optionsMap[@"pageSize"] integerValue];
         SYIMMessage *message = [SYIMMessage mj_objectWithKeyValues:optionsJson];
       NSArray <SYIMMessage *> *messageList =  [[SYIMManager shared].chatManager getMessageList:message pageSize:pageSize > 0 ? pageSize : 20];
-        result([messageList mj_JSONString]);
+        result([[SYIMMessage mj_keyValuesArrayWithObjectArray:messageList] mj_JSONString]);
     } else {
         result(@"syMessage is null!");
     }

@@ -17,8 +17,8 @@ class EditSyClientInitWidget extends StatelessWidget {
     return AButton.build(
         onPressed: () {
           SyOptions syOptions = SyOptions();
-          syOptions.appId = "12345";
-          syOptions.secret = "12345";
+          syOptions.appId = "7155793691347525633";
+          syOptions.secret = "1aa1432b98335fb4033fa6ba54aea0fc436c04061f5c1369f77f72ea30d6240d";
           syOptions.environment = SyEnvironmentEnum.prod;
           SyClient.getInstance().init(syOptions: syOptions);
           Get.find<ApiDetailLogic>().setResult(jsonEncode(syOptions.toJson()));

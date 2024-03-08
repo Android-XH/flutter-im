@@ -71,7 +71,8 @@
 
 - (void)postConversationData:(NSArray<SYIMConversation *> *)list {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.conversationChannel sendMessage:[list mj_JSONString]];
+        NSString *jsonString = [[SYIMConversation mj_keyValuesArrayWithObjectArray:list] mj_JSONString];
+        [self.conversationChannel sendMessage:jsonString];
     });
 }
 
@@ -127,7 +128,7 @@
 - (void)onStatusChange:(SYIMMessage *)message {
     SYIMPMessageData *messageData = [[SYIMPMessageData alloc] init];
     messageData.type = @"onStatusChange";
-    messageData.data = [@[message] mj_JSONString];
+    messageData.data = [[SYIMMessage mj_keyValuesArrayWithObjectArray:@[message]] mj_JSONString];
     [self postChatMessageData:messageData];
 }
 

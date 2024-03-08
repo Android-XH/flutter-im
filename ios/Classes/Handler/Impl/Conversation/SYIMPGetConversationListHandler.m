@@ -13,6 +13,6 @@
 @implementation SYIMPGetConversationListHandler
 - (void)onMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     NSArray *conversationList = [[SYIMManager shared].conversationManager getConversationList];
-    result([conversationList mj_JSONString]);
+    result([[SYIMConversation mj_keyValuesArrayWithObjectArray:conversationList] mj_JSONString]);
 }
 @end

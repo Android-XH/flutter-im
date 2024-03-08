@@ -26,7 +26,7 @@
     "children": [
       {
         "title": "通过UUID登录",
-        "className": "SyClientInit"
+        "className": "SyLoginByUuid"
       },
       {
         "title": "通过Token登录",
