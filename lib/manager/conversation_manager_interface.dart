@@ -56,12 +56,12 @@ abstract class ConversationManagerInterface {
   void removeChatting(String sessionId);
 
   /// 获取会话未读消息数
-  Future<dynamic> getUnReadNum(String sessionId);
+  Future<int> getUnReadNum(String sessionId);
 
   /// 获取所有会话未读消息数
   ///
   /// @return
-  Future<dynamic> getAllUnReadNum();
+  Future<int> getAllUnReadNum();
 
   /// 根据用户ID获取当前会话ID，仅私聊可用
   ///
@@ -69,7 +69,7 @@ abstract class ConversationManagerInterface {
   /// @return
 
   @Deprecated("已废弃，使用可能获取错误的SessionId")
-  Future<dynamic> getSessionIdByUserId(String userId);
+  Future<String> getSessionIdByUserId(String userId);
 
   /// 刷新会话未读消息数量
   /// @param sessionId
@@ -77,5 +77,5 @@ abstract class ConversationManagerInterface {
   /// 根据聊天类型获取所有会话未读消息数
   ///
   /// @return
-  Future<dynamic> getAllUnReadNumBySessionType({required SessionType sessionType});
+  Future<int> getAllUnReadNumBySessionType({required SessionType sessionType});
 }

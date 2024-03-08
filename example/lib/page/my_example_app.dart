@@ -227,8 +227,7 @@ class _MyAppState extends State<MyExampleApp> {
                     onPressed: () async {
                       int num = await SyClient.getInstance()
                           .conversationManager()
-                          .getAllUnReadNumBySessionType(
-                              sessionType: SessionType.PRIVATE);
+                          .getAllUnReadNum();
                       setState(() {
                         _result = "${num}";
                       });

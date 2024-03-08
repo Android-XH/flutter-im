@@ -65,15 +65,17 @@ class ConversationManager extends ConversationManagerInterface {
   }
 
   @override
-  Future<dynamic> getAllUnReadNum() async {
-    return SyImSdkConversation.instance.getAllUnReadNum();
+  Future<int> getAllUnReadNum() async {
+    var result =await SyImSdkConversation.instance.getAllUnReadNum();
+    return result as int;
   }
 
   @override
-  Future<dynamic> getAllUnReadNumBySessionType(
+  Future<int> getAllUnReadNumBySessionType(
       {required SessionType sessionType}) async {
-    return SyImSdkConversation.instance
+    var result =await SyImSdkConversation.instance
         .getAllUnReadNumBySessionType(sessionType: sessionType);
+    return result as int;
   }
 
   @override
@@ -83,13 +85,15 @@ class ConversationManager extends ConversationManagerInterface {
   }
 
   @override
-  Future<dynamic> getSessionIdByUserId(String userId) async {
-    return SyImSdkConversation.instance.getSessionIdByUserId(userId);
+  Future<String> getSessionIdByUserId(String userId) async {
+    var result= await SyImSdkConversation.instance.getSessionIdByUserId(userId);
+    return result as String;
   }
 
   @override
-  Future<dynamic> getUnReadNum(String sessionId) async {
-    return SyImSdkConversation.instance.getUnReadNum(sessionId);
+  Future<int> getUnReadNum(String sessionId) async {
+    var result = SyImSdkConversation.instance.getUnReadNum(sessionId);
+    return result as int;
   }
 
   @override

@@ -21,7 +21,7 @@ abstract class SyImSdkContact extends PlatformInterface {
   /// 同步查询用户信息
   /// @param userId
   /// @return
-  Future<SyContact> getUserInfoFromCache(String userId);
+  Future<dynamic> getUserInfoFromCache(String userId);
 
   /// 添加好友
   /// @param userId
@@ -42,5 +42,5 @@ abstract class SyImSdkContact extends PlatformInterface {
   /// 查询是否是好友
   /// @param userId
   /// @return
-  Future<bool> isFriend(String userId);
+  Future<dynamic> isFriend(String userId);
 }

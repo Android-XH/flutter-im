@@ -5,6 +5,8 @@ import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/manager/data/sy_contact.dart';
 
 import '../../common/channel_common.dart';
+import '../../common/sy_client_method_common.dart';
+import '../../manager/data/sy_conversation.dart';
 import '../sy_im_sdk_contact_interface.dart';
 
 class SyImSdkContactImpl extends SyImSdkContact {
@@ -14,32 +16,59 @@ class SyImSdkContactImpl extends SyImSdkContact {
 
   @override
   void addFriend({required String userId, SyCallBack<bool>? callback}) {
-
+    Map<String, String> arguments = <String, String>{};
+    arguments.putIfAbsent("userId", () => userId);
+    methodChannel
+        .invokeMethod(SyClientMethodCommon.addFriend, arguments)
+        .then((value) =>
+        callback?.onSuccess(value))
+        .catchError((e) => callback?.onFail.call(e.code, e.message!));
   }
 
   @override
   void deleteFriend({required String userId, SyCallBack<bool>? callback}) {
-    // TODO: implement deleteFriend
+    Map<String, String> arguments = <String, String>{};
+    arguments.putIfAbsent("userId", () => userId);
+    methodChannel
+        .invokeMethod(SyClientMethodCommon.deleteFriend, arguments)
+        .then((value) =>
+        callback?.onSuccess(value))
+        .catchError((e) => callback?.onFail.call(e.code, e.message!));
   }
 
   @override
   void editFriendRemark({required String userId,required String remark, SyCallBack<bool>? callback}) {
-    // TODO: implement editFriendRemark
+    Map<String, String> arguments = <String, String>{};
+    arguments.putIfAbsent("userId", () => userId);
+    arguments.putIfAbsent("remark", () => remark);
+    methodChannel
+        .invokeMethod(SyClientMethodCommon.editFriendRemark, arguments)
+        .then((value) =>
+        callback?.onSuccess(value))
+        .catchError((e) => callback?.onFail.call(e.code, e.message!));
   }
 
   @override
   void getUserInfo({required String userId, required SyCallBack<SyContact> callback}) {
-    // TODO: implement getUserInfo
+    Map<String, String> arguments = <String, String>{};
+    arguments.putIfAbsent("userId", () => userId);
+    methodChannel
+        .invokeMethod(SyClientMethodCommon.getUserInfo, arguments)
+        .then((value) =>
+          callback.onSuccess(SyContact.fromJson(value)))
+        .catchError((e) => callback.onFail.call(e.code, e.message!));
   }
 
   @override
-  Future<SyContact> getUserInfoFromCache(String userId) {
-    // TODO: implement getUserInfoFromCache
-    throw UnimplementedError();
+  Future<dynamic> getUserInfoFromCache(String userId) {
+    Map<String, String> arguments = <String, String>{};
+    arguments.putIfAbsent("userId", () => userId);
+   return  methodChannel.invokeMethod(SyClientMethodCommon.getUserInfoFromCache, arguments);
   }
 
   @override
-  Future<bool> isFriend(String userId) {
-    // TODO: implement isFriend
-    throw UnimplementedError();
+  Future<dynamic> isFriend(String userId) {
+    Map<String, String> arguments = <String, String>{};
+    arguments.putIfAbsent("userId", () => userId);
+    return  methodChannel.invokeMethod(SyClientMethodCommon.isFriend, arguments);
   }}

@@ -26,13 +26,15 @@ import '../contact_interface.dart';
   }
 
   @override
-  Future<SyContact> getUserInfoFromCache(String userId) {
-   return SyImSdkContact.instance.getUserInfoFromCache(userId);
+  Future<SyContact> getUserInfoFromCache(String userId) async {
+   var result = await SyImSdkContact.instance.getUserInfoFromCache(userId).then((value) => null);
+   return (result as  SyContact);
   }
 
   @override
-  Future<bool> isFriend(String userId) {
-    return SyImSdkContact.instance.isFriend(userId);
+  Future<bool> isFriend(String userId)async {
+    var result = await SyImSdkContact.instance.isFriend(userId).then((value) => null);
+    return (result as  bool);
   }
  
 
