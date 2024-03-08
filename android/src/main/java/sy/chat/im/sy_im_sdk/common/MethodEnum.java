@@ -2,7 +2,6 @@ package sy.chat.im.sy_im_sdk.common;
 
 import sy.chat.im.sy_im_sdk.handler.MethodHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.DeleteMessageHandler;
-import sy.chat.im.sy_im_sdk.handler.impl.chat.GetLastMessageHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.GetMessageHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.GetMessageListHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.SaveMessageToLocalHandler;
@@ -39,7 +38,6 @@ public enum MethodEnum {
     //聊天管理配置开始
     CHAT_SEND_MESSAGE("sendMessage", new SendMessageHandler()),
     CHAT_SAVE_MESSAGE_TO_LOCAL("saveMessageToLocal", new SaveMessageToLocalHandler()),
-    CHAT_GET_LAST_MESSAGE("getLastMessage", new GetLastMessageHandler()),
     CHAT_GET_MESSAGE_LIST("getMessageList", new GetMessageListHandler()),
     CHAT_DELETE_MESSAGE("deleteMessage", new DeleteMessageHandler()),
     CHAT_UPDATE_MESSAGE("updateMessage", new UpdateMessageHandler()),

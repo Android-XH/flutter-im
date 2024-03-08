@@ -145,10 +145,8 @@ class _MyAppState extends State<MyExampleApp> {
                     onPressed: () {
                       SyClient.getInstance().chatManager().addMessageListener(
                           OnMessageListener(
-                              onMessage: (syMessage) {},
-                              onCustomMsg: (syMessage) {},
                               onCmdMsg: (syMessage) {},
-                              onUnLineMsg: (syMessageList) {}));
+                              onMessage: (syMessageList) {}));
                     }),
                 SizedBox(
                   height: 5,
@@ -168,6 +166,10 @@ class _MyAppState extends State<MyExampleApp> {
                                 setState(() {
                                   _loginInfo = "${msg}";
                                 });
+                              callback: SyCallBack(onSuccess: (c) {
+                                print("------------->${c.associationId}");
+                              }, onFail: (c, m) {
+                                print("------------->${m}");
                               }));
                     }),
                 SizedBox(

@@ -1,0 +1,97 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - CocoaAsyncSocket (7.6.5)
+  - CocoaLumberjack (3.8.4):
+    - CocoaLumberjack/Core (= 3.8.4)
+  - CocoaLumberjack/Core (3.8.4)
+  - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - MJExtension (3.4.1)
+  - Protobuf (3.25.3)
+  - ReactiveObjC (3.1.1)
+  - RealReachability (1.4.1):
+    - RealReachability/Connection (= 1.4.1)
+    - RealReachability/Ping (= 1.4.1)
+  - RealReachability/Connection (1.4.1)
+  - RealReachability/Ping (1.4.1)
+  - SQLiteRepairKit (1.2.2):
+    - WCDBOptimizedSQLCipher (~> 1.2.0)
+  - sy_im_sdk (0.0.1):
+    - Flutter
+    - SYIM
+  - SYIM (0.2.7):
+    - AFNetworking
+    - CocoaAsyncSocket
+    - CocoaLumberjack
+    - MJExtension
+    - Protobuf
+    - ReactiveObjC
+    - RealReachability
+    - WCDB (~> 1.0.7.5)
+  - WCDB (1.0.7.5):
+    - SQLiteRepairKit (~> 1.2.0)
+    - WCDBOptimizedSQLCipher (~> 1.2.0)
+  - WCDBOptimizedSQLCipher (1.2.1)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - sy_im_sdk (from `.symlinks/plugins/sy_im_sdk/ios`)
+
+SPEC REPOS:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - AFNetworking
+    - CocoaAsyncSocket
+    - CocoaLumberjack
+    - MJExtension
+    - Protobuf
+    - ReactiveObjC
+    - RealReachability
+    - SQLiteRepairKit
+    - WCDB
+    - WCDBOptimizedSQLCipher
+  "ssh://git@120.46.85.30:222/zgl/sypodspec.git":
+    - SYIM
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  sy_im_sdk:
+    :path: ".symlinks/plugins/sy_im_sdk/ios"
+
+SPEC CHECKSUMS:
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  CocoaLumberjack: df59726690390bb8aaaa585938564ba1c8dbbb44
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  integration_test: 13825b8a9334a850581300559b8839134b124670
+  MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
+  Protobuf: 8e9074797a13c484a79959fdb819ef4ae6da7dbe
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  RealReachability: 828e74e3a1e89ba8f54395344637689cf4065c36
+  SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
+  sy_im_sdk: 77705eb43931276850e86614069df7539cd6ee48
+  SYIM: cf1c3908ebd5546da20abaaa13a9105b4e353734
+  WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
+  WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
+
+PODFILE CHECKSUM: ae0f7c5ffbd2bd3e10023003394e0a061843a266
+
+COCOAPODS: 1.15.2
