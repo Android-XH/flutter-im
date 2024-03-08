@@ -13,6 +13,11 @@
 #import "SYIMPLogOutHandler.h"
 #import "SYIMPCreateSignConversationHandler.h"
 #import "SYIMPGetConversationListHandler.h"
+// 消息
+#import "SYIMPSendMessageHandler.h"
+#import "SYIMPSaveMessageToLocalHandler.h"
+#import "SYIMPGetMessageListHandle.h"
+#import "SYIMPDeleteMessageHandle.h"
 
 @implementation SYIMPMethodEnum
 
@@ -34,6 +39,10 @@ static NSArray<SYIMPMethodEnum *> *values = nil;
             [SYIMPMethodEnum enumWithMethodName:@"addConnectListener" methodHandler:SYIMPAddConnectListenerHandler.new],
             [SYIMPMethodEnum enumWithMethodName:@"getConversationList" methodHandler:SYIMPGetConversationListHandler.new],
             [SYIMPMethodEnum enumWithMethodName:@"createSignConversation" methodHandler:SYIMPCreateSignConversationHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"sendMessage" methodHandler:SYIMPSendMessageHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"saveMessageToLocal" methodHandler:SYIMPSaveMessageToLocalHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"getMessageList" methodHandler:SYIMPGetMessageListHandle.new],
+            [SYIMPMethodEnum enumWithMethodName:@"deleteMessage" methodHandler:SYIMPDeleteMessageHandle.new],
         ];
     }
     return values;
