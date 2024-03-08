@@ -18,6 +18,9 @@ class ApiDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    CodePreview.config = CodePreviewConfig(removeParseComment: false);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('思语IM-SDK'),
