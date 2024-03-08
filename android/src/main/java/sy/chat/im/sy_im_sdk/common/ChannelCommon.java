@@ -6,4 +6,5 @@ public class ChannelCommon {
     public static final String SY_CLIENT_CONVERSATION_CHANNEL = "sy_client_conversation_channel";
     public static final String SY_CLIENT_CHAT_MESSAGE_CHANNEL = "sy_client_chat_message_channel";
 
+
 }

@@ -10,4 +10,7 @@ class ApiDetailLogic extends GetxController {
   setResult(String result) {
     state.result.value = result;
   }
+  addResult(String result) {
+    state.result.value += result;
+  }
 }

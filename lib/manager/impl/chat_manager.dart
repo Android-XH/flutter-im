@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:sy_im_sdk/channel/sy_im_sdk_chat_interface.dart';
 import 'package:sy_im_sdk/common/channel_common.dart';
+import 'package:sy_im_sdk/data/chat_data.dart';
 import 'package:sy_im_sdk/listener/sy_on_message_listener.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/manager/chat_manager_interface.dart';
@@ -14,7 +17,35 @@ class ChatManager implements ChatManagerInterface {
   ChatManager() {
     //接收链接消息
     basicMessageChannel.setMessageHandler((message) async {
-      print("收到消息message:${message}");
+      print("收到消息：$message");
+      if (_messageList.isNotEmpty && message != null && message.isNotEmpty) {
+        ChatData chatData = ChatData.fromJson(jsonDecode(message));
+        String data = chatData.data ?? "";
+        if (chatData.type != null && data.isNotEmpty) {
+          List<dynamic> list = jsonDecode(data);
+          List<SyMessage> syMessageList =
+              list.map((item) => SyMessage.fromJson(item)).toList();
+          switch (chatData.type) {
+            case "onMessage":
+            case "onCustomMsg":
+            case "onUnLineMsg":
+              for (var element in _messageList) {
+                element.onMessage(syMessageList);
+              }
+              break;
+            case "onStatusChange":
+              for (var element in _messageList) {
+                element.onStatusChange(syMessageList);
+              }
+              break;
+            case "onCmdMsg":
+              for (var element in _messageList) {
+                element.onCmdMsg(syMessageList);
+              }
+              break;
+          }
+        }
+      }
       return 'success';
     });
   }
@@ -45,8 +76,6 @@ class ChatManager implements ChatManagerInterface {
       {required String msgId, required SyCallBack<bool> callBack}) {
     SyImSdkChat.instance.deleteMessage(msgId: msgId, callBack: callBack);
   }
-
-
 
   @override
   void getMessage(

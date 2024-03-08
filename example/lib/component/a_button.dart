@@ -6,8 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../page/api_detail/logic.dart';
 
 class AButton {
-  static MaterialButton build(
-      {required String title, required VoidCallback onPressed}) {
+  static MaterialButton build({required VoidCallback onPressed}) {
     return MaterialButton(
         onPressed: onPressed,
         color: Colors.blue,

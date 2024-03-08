@@ -2,9 +2,11 @@ import 'package:code_preview/code_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sy_im_sdk_example/page/api_detail/widgets/edit_options_widget.dart';
-import 'package:sy_im_sdk_example/page/api_detail/widgets/edit_sy_client_init_widget.dart';
-import 'package:sy_im_sdk_example/page/api_detail/widgets/edit_sy_login_by_token.dart';
+import 'package:sy_im_sdk_example/page/api_detail/widgets/chat/edit_chat_add_lisntener.dart';
+import 'package:sy_im_sdk_example/page/api_detail/widgets/sy_client/edit_options_widget.dart';
+import 'package:sy_im_sdk_example/page/api_detail/widgets/sy_client/edit_sy_client_init_widget.dart';
+
+import 'package:sy_im_sdk_example/page/api_detail/widgets/sy_client/edit_sy_login_by_token.dart';
 
 import 'logic.dart';
 
@@ -69,6 +71,8 @@ class ApiDetailPage extends StatelessWidget {
         return const EditSyClientInitWidget();
       case "SyLoginByUserName":
         return const EditSyLoginByToken();
+      case "AddMessageListener":
+        return const EditChatAddListener();
       default:
         return Container();
         break;
