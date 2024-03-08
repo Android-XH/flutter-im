@@ -180,19 +180,13 @@ class _MyAppState extends State<MyExampleApp> {
                           .getConversationManager()
                           .createSignConversationByUid(
                               uuid: "66666666666666666666666666666666",
-                              callback: SyCallBack(onSuccess: (conversion) {
-                                setState(() {
-                                  _loginInfo = "${conversion.toJson()}";
-                                });
-                              }, onFail: (code, msg) {
-                                setState(() {
-                                  _loginInfo = "${msg}";
-                                });
-                              callback: SyCallBack(onSuccess: (c) {
-                                print("------------->${c.associationId}");
-                              }, onFail: (c, m) {
-                                print("------------->${m}");
-                              }));
+                              callback: SyCallBack(
+                                  onSuccess: (conversion) {
+                                    setState(() {
+                                      _result = "${conversion.toJson()}";
+                                    });
+                                  },
+                                  onFail: (String code, String errMsg) {}));
                     }),
                 SizedBox(
                   height: 5,
@@ -208,11 +202,11 @@ class _MyAppState extends State<MyExampleApp> {
                               contact: contact,
                               callback: SyCallBack(onSuccess: (conversion) {
                                 setState(() {
-                                  _loginInfo = "${conversion.toJson()}";
+                                  _result = "${conversion.toJson()}";
                                 });
                               }, onFail: (code, msg) {
                                 setState(() {
-                                  _loginInfo = "${msg}";
+                                  _result = "${msg}";
                                 });
                               }));
                     }),
@@ -233,9 +227,10 @@ class _MyAppState extends State<MyExampleApp> {
                     onPressed: () async {
                       int num = await SyClient.getInstance()
                           .getConversationManager()
-                          .getAllUnReadNumBySessionType(sessionType: SessionType.PRIVATE);
+                          .getAllUnReadNumBySessionType(
+                              sessionType: SessionType.PRIVATE);
                       setState(() {
-                        _loginInfo = "${num}";
+                        _result = "${num}";
                       });
                     }),
                 SizedBox(
@@ -249,7 +244,7 @@ class _MyAppState extends State<MyExampleApp> {
                           .getUnReadNum(
                               "7155793691347525633_P__66666666666666666666666666666666");
                       setState(() {
-                        _loginInfo = "${num}";
+                        _result = "${num}";
                       });
                     }),
                 SizedBox(
@@ -263,9 +258,13 @@ class _MyAppState extends State<MyExampleApp> {
                           .getConversationList(
                               callback: SyCallBack<List<SyConversation>>(
                                   onSuccess: (List<SyConversation> t) {
+                                    String result = "";
+                                    t.forEach((e) {
+                                      result += e.name!+",";
+                                    });
                                     setState(() {
-                                      _loginInfo = "${t[0].sendUserId}";
-                                      print("----------->${t[0].sendUserId}");
+                                      _result = result;
+
                                     });
                                   },
                                   onFail: (String code, String errMsg) {}));
@@ -280,12 +279,22 @@ class _MyAppState extends State<MyExampleApp> {
                           .getConversationManager()
                           .addConversationListener(ConversationListener((list) {
                         setState(() {
-                          _loginInfo = "${list.toString()}";
+                          _result = "${list.toString()}";
                           print("----------->${list[0].lastMessage}");
                         });
                       }));
-                    })
                     }),
+
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "推出会话",
+                    onPressed: () {
+                      SyClient.getInstance()
+                          .getConversationManager()
+                          .removeChatting("7155793691347525633_P__66666666666666666666666666666666");
+                    })
               ],
             ),
           )),

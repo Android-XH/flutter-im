@@ -1,6 +1,7 @@
 
 
 import 'package:sy_im_sdk/manager/data/sy_contact.dart';
+import 'package:sy_im_sdk/manager/data/sy_message.dart';
 
 /// associationId : "66666666666666666666666666666666"
 /// avatar : ""
@@ -21,21 +22,21 @@ import 'package:sy_im_sdk/manager/data/sy_contact.dart';
 
 class SyConversation {
   SyConversation({
-      String? associationId, 
-      String? avatar, 
+      String? associationId,
+      String? avatar,
       SyContact? contact,
-      String? key, 
-      dynamic lastMessage, 
-      bool? localData, 
-      String? name, 
-      num? needSyncMsg, 
-      dynamic sendUserId, 
-      String? sessionId, 
-      num? sessionType, 
-      num? syncMsgEndSeq, 
-      num? syncMsgSeq, 
-      bool? topping, 
-      num? unReadNum, 
+      String? key,
+      SyMessage? lastMessage,
+      bool? localData,
+      String? name,
+      num? needSyncMsg,
+      String? sendUserId,
+      String? sessionId,
+      num? sessionType,
+      num? syncMsgEndSeq,
+      num? syncMsgSeq,
+      bool? topping,
+      num? unReadNum,
       num? updateTimeStamp,}){
     _associationId = associationId;
     _avatar = avatar;
@@ -60,7 +61,7 @@ class SyConversation {
     _avatar = json['avatar'];
     _contact = json['contact'] != null ? SyContact.fromJson(json['contact']) : null;
     _key = json['key'];
-    _lastMessage = json['lastMessage'];
+    _lastMessage = json['lastMessage'] != null ? SyMessage.fromJson(json['lastMessage']) : null;
     _localData = json['localData'];
     _name = json['name'];
     _needSyncMsg = json['needSyncMsg'];
@@ -77,11 +78,11 @@ class SyConversation {
   String? _avatar;
   SyContact? _contact;
   String? _key;
-  dynamic _lastMessage;
+  SyMessage? _lastMessage;
   bool? _localData;
   String? _name;
   num? _needSyncMsg;
-  dynamic _sendUserId;
+  String? _sendUserId;
   String? _sessionId;
   num? _sessionType;
   num? _syncMsgEndSeq;
@@ -93,11 +94,11 @@ SyConversation copyWith({  String? associationId,
   String? avatar,
   SyContact? contact,
   String? key,
-  dynamic lastMessage,
+  SyMessage? lastMessage,
   bool? localData,
   String? name,
   num? needSyncMsg,
-  dynamic sendUserId,
+  String? sendUserId,
   String? sessionId,
   num? sessionType,
   num? syncMsgEndSeq,
@@ -126,11 +127,11 @@ SyConversation copyWith({  String? associationId,
   String? get avatar => _avatar;
   SyContact? get contact => _contact;
   String? get key => _key;
-  dynamic get lastMessage => _lastMessage;
+  SyMessage? get lastMessage => _lastMessage;
   bool? get localData => _localData;
   String? get name => _name;
   num? get needSyncMsg => _needSyncMsg;
-  dynamic get sendUserId => _sendUserId;
+  String? get sendUserId => _sendUserId;
   String? get sessionId => _sessionId;
   num? get sessionType => _sessionType;
   num? get syncMsgEndSeq => _syncMsgEndSeq;
