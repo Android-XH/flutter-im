@@ -6,7 +6,8 @@ import 'package:sy_im_sdk/sy_client.dart';
 class SendMessage {
 
 
-  //构造消息接收人对象
+  /// @title:
+  ///  -test 构造消息接收人对象
   _getReceiveUserInfo() {
     SyContact receiveUserInfo = SyContact();
     receiveUserInfo.userId = "消息接收人用户ID";
