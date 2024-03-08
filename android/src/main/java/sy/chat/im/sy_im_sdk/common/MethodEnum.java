@@ -2,7 +2,6 @@ package sy.chat.im.sy_im_sdk.common;
 
 import sy.chat.im.sy_im_sdk.handler.MethodHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.DeleteMessageHandler;
-import sy.chat.im.sy_im_sdk.handler.impl.chat.GetLastMessageHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.GetMessageHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.GetMessageListHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.SaveMessageToLocalHandler;
