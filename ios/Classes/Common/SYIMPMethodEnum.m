@@ -28,6 +28,8 @@
 #import "SYIMPSaveMessageToLocalHandler.h"
 #import "SYIMPGetMessageListHandle.h"
 #import "SYIMPDeleteMessageHandle.h"
+#import "SYIMPUpdateMessageHandler.h"
+#import "SYIMPGetMessageHandler.h"
 
 @implementation SYIMPMethodEnum
 
@@ -66,7 +68,8 @@ static NSArray<SYIMPMethodEnum *> *values = nil;
             [SYIMPMethodEnum enumWithMethodName:@"saveMessageToLocal" methodHandler:SYIMPSaveMessageToLocalHandler.new],
             [SYIMPMethodEnum enumWithMethodName:@"getMessageList" methodHandler:SYIMPGetMessageListHandle.new],
             [SYIMPMethodEnum enumWithMethodName:@"deleteMessage" methodHandler:SYIMPDeleteMessageHandle.new],
-
+            [SYIMPMethodEnum enumWithMethodName:@"updateMessage" methodHandler:SYIMPUpdateMessageHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"getMessage" methodHandler:SYIMPGetMessageHandler.new],
         ];
     }
     return values;
