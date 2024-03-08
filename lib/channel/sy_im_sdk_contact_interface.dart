@@ -10,6 +10,8 @@ abstract class SyImSdkContact extends PlatformInterface {
   static final Object _token = Object();
 
   static final SyImSdkContact _instance = SyImSdkContactImpl();
+
+
   static SyImSdkContact get instance => _instance;
   /// 查询用户信息
   /// @param userId
