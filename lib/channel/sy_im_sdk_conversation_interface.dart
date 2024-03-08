@@ -1,15 +1,10 @@
-import 'dart:ffi';
-
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sy_im_sdk/channel/impl/sy_im_sdk_conversation_impl.dart';
-import 'package:sy_im_sdk/config/sy_options.dart';
 
 import '../common/session_type.dart';
 import '../listener/sy_call_back.dart';
 import '../manager/data/sy_contact.dart';
 import '../manager/data/sy_conversation.dart';
-
-import '../manager/data/sy_message.dart';
 import 'impl/sy_im_sdk_method_channel.dart';
 
 abstract class SyImSdkConversation extends PlatformInterface {
