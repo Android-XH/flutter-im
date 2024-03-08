@@ -21,16 +21,16 @@ abstract class ConversationManagerInterface {
   void getConversationList({required SyCallBack<List<SyConversation>> callback});
 
   /**
-   * 创建群聊会话对象
+   * 创建会话对象
    *
    * @param group 群对象
    * @see SyContact
    */
   void createSignConversationByUid(
-      {required String uuid, required SyCallBack<SyConversation> callback});
+      {required String userId, required SyCallBack<SyConversation> callback});
 
   /**
-   * 创建群聊会话对象
+   * 创建会话对象
    *
    * @param group 群对象
    * @see SyContact
@@ -91,6 +91,7 @@ abstract class ConversationManagerInterface {
    * @param userId
    * @return
    */
+  @deprecated
   Future<dynamic> getSessionIdByUserId(String userId);
 
   /**

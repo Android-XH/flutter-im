@@ -59,12 +59,12 @@ class SyImSdkChatImpl extends SyImSdkChat {
 
   @override
   void deleteMessage(
-      {required String msgId,  String? sessionId, required SyCallBack<bool> callBack}) {
+      {required String msgId,
+      required String sessionId,
+      required SyCallBack<bool> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("msgId", () => msgId);
-    if (sessionId != null && sessionId.isNotEmpty) {
-      arguments.putIfAbsent("sessionId", () => sessionId);
-    }
+    arguments.putIfAbsent("sessionId", () => sessionId);
     methodChannel
         .invokeMethod(SyClientMethodCommon.deleteMessage, arguments)
         .then((value) => callBack.onSuccess.call(value))
@@ -91,13 +91,11 @@ class SyImSdkChatImpl extends SyImSdkChat {
   @override
   void getMessage(
       {required String msgId,
-      String? sessionId,
+      required String sessionId,
       required SyCallBack<SyMessage> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("msgId", () => msgId);
-    if (sessionId != null && sessionId.isNotEmpty) {
-      arguments.putIfAbsent("sessionId", () => sessionId);
-    }
+    arguments.putIfAbsent("sessionId", () => sessionId);
     methodChannel
         .invokeMethod(SyClientMethodCommon.getMessage, arguments)
         .then((value) =>

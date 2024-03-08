@@ -42,7 +42,7 @@ abstract class SyImSdkConversation extends PlatformInterface {
    * @see SyContact
    */
   void createSignConversationByUid(
-      {required String uuid, required SyCallBack<SyConversation> callback}) {
+      {required String userId, required SyCallBack<SyConversation> callback}) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 

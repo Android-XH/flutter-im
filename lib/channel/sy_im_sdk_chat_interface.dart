@@ -40,7 +40,9 @@ abstract class SyImSdkChat extends PlatformInterface {
   /// 获取消息
   /// @param syMessage
   void getMessage(
-      {required String msgId,       String? sessionId, required SyCallBack<SyMessage> callBack}) {
+      {required String msgId,
+      required String sessionId,
+      required SyCallBack<SyMessage> callBack}) {
     throw UnimplementedError('getMessage() has not been implemented.');
   }
 
@@ -50,7 +52,6 @@ abstract class SyImSdkChat extends PlatformInterface {
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack}) {
     throw UnimplementedError('updateMessage() has not been implemented.');
   }
-
 
   /// 查询历史消息
   /// @param starMessage 起始消息
@@ -65,7 +66,9 @@ abstract class SyImSdkChat extends PlatformInterface {
   /// 删除消息
   /// @param msgId
   void deleteMessage(
-      {required String msgId,  String? sessionId, required SyCallBack<bool> callBack}) {
+      {required String msgId,
+      required String sessionId,
+      required SyCallBack<bool> callBack}) {
     throw UnimplementedError('deleteMessage() has not been implemented.');
   }
 }
