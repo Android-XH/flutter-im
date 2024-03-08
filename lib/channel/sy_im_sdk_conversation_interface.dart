@@ -108,7 +108,7 @@ abstract class SyImSdkConversation extends PlatformInterface {
   /**
    * 获取会话未读消息数
    */
-  Future<Long> getUnReadNum(String sessionId) {
+  Future<dynamic> getUnReadNum(String sessionId) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
@@ -117,7 +117,7 @@ abstract class SyImSdkConversation extends PlatformInterface {
    *
    * @return
    */
-  Future<Long> getAllUnReadNum() {
+  Future<dynamic> getAllUnReadNum() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
@@ -127,7 +127,7 @@ abstract class SyImSdkConversation extends PlatformInterface {
    * @param userId
    * @return
    */
-  Future<String> getSessionIdByUserId(String userId) {
+  Future<dynamic> getSessionIdByUserId(String userId) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
@@ -139,7 +139,7 @@ abstract class SyImSdkConversation extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<Long> getAllUnReadNumBySessionType({required SessionType sessionType}) {
+  Future<dynamic> getAllUnReadNumBySessionType({required SessionType sessionType}) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }

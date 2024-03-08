@@ -66,13 +66,14 @@ class ConversationManager extends ConversationManagerInterface {
   }
 
   @override
-  Future<Long> getAllUnReadNum() async{
-    return  SyImSdkConversation.instance.getAllUnReadNum();
+  Future<dynamic> getAllUnReadNum() async {
+    return SyImSdkConversation.instance.getAllUnReadNum();
   }
 
   @override
-  Future<Long> getAllUnReadNumBySessionType({required SessionType sessionType}) async{
-    return await SyImSdkConversation.instance
+  Future<dynamic> getAllUnReadNumBySessionType(
+      {required SessionType sessionType}) async {
+    return SyImSdkConversation.instance
         .getAllUnReadNumBySessionType(sessionType: sessionType);
   }
 
@@ -83,13 +84,13 @@ class ConversationManager extends ConversationManagerInterface {
   }
 
   @override
-  Future<String> getSessionIdByUserId(String userId) async {
-    return await SyImSdkConversation.instance.getSessionIdByUserId(userId);
+  Future<dynamic> getSessionIdByUserId(String userId) async {
+    return SyImSdkConversation.instance.getSessionIdByUserId(userId);
   }
 
   @override
-  Future<Long> getUnReadNum(String sessionId) async {
-    return await SyImSdkConversation.instance.getUnReadNum(sessionId);
+  Future<dynamic> getUnReadNum(String sessionId) async {
+    return SyImSdkConversation.instance.getUnReadNum(sessionId);
   }
 
   @override
@@ -100,7 +101,8 @@ class ConversationManager extends ConversationManagerInterface {
   @override
   void removeConversation(
       {required String sessionId, required SyCallBack<bool> callback}) {
-    SyImSdkConversation.instance.removeConversation(sessionId: sessionId, callback: callback);
+    SyImSdkConversation.instance
+        .removeConversation(sessionId: sessionId, callback: callback);
   }
 
   @override
@@ -113,7 +115,7 @@ class ConversationManager extends ConversationManagerInterface {
       {required String sessionId,
       required topping,
       required SyCallBack<bool> callback}) {
-    SyImSdkConversation.instance.setConversationTopping(sessionId: sessionId, topping: topping, callback: callback);
+    SyImSdkConversation.instance.setConversationTopping(
+        sessionId: sessionId, topping: topping, callback: callback);
   }
-
 }

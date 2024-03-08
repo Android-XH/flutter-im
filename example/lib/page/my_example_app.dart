@@ -1,9 +1,15 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sy_im_sdk/common/session_type.dart';
 import 'package:sy_im_sdk/config/sy_options.dart';
+import 'package:sy_im_sdk/listener/sy_conversation_listener.dart';
 import 'package:sy_im_sdk/listener/sy_on_dart_connect_listener.dart';
 import 'package:sy_im_sdk/listener/sy_on_message_listener.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
+import 'package:sy_im_sdk/manager/data/sy_contact.dart';
+import 'package:sy_im_sdk/manager/data/sy_conversation.dart';
 import 'package:sy_im_sdk/sy_client.dart';
 
 class MyExampleApp extends StatefulWidget {
@@ -103,7 +109,7 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "UUID登录",
                     onPressed: () {
                       SyClient.getInstance().loginByUUID(
-                        uuid: "05b3dcc21d934283b2c493b8fbf88a7b",
+                        uuid: "d95ee550bf624d38adb8cef891f1bb34",
                         callback: SyCallBack(onSuccess: (authInfo) {
                           print("登录成功:${authInfo.toJson()}");
                           setState(() {
@@ -148,18 +154,112 @@ class _MyAppState extends State<MyExampleApp> {
                   height: 5,
                 ),
                 _buildButton(
-                    title: "创建会话",
+                    title: "用userid创建会话",
                     onPressed: () {
                       SyClient.getInstance()
                           .getConversationManager()
                           .createSignConversationByUid(
                               uuid: "66666666666666666666666666666666",
-                              callback: SyCallBack(
-                                  onSuccess: (c) {
-                                    print("------------->${c.associationId}");
-                                  }, onFail: (c, m) {
-                                print("------------->${m}");
+                              callback: SyCallBack(onSuccess: (conversion) {
+                                setState(() {
+                                  _loginInfo = "${conversion.toJson()}";
+                                });
+                              }, onFail: (code, msg) {
+                                setState(() {
+                                  _loginInfo = "${msg}";
+                                });
                               }));
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "用contact创建会话",
+                    onPressed: () {
+                      var contact = SyContact();
+                      contact.userId = "66666666666666666666666666666666";
+                      SyClient.getInstance()
+                          .getConversationManager()
+                          .createSignConversationByContact(
+                              contact: contact,
+                              callback: SyCallBack(onSuccess: (conversion) {
+                                setState(() {
+                                  _loginInfo = "${conversion.toJson()}";
+                                });
+                              }, onFail: (code, msg) {
+                                setState(() {
+                                  _loginInfo = "${msg}";
+                                });
+                              }));
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "进入会话",
+                    onPressed: () {
+                      SyClient.getInstance().getConversationManager().addChatting(
+                          "7155793691347525633_P__66666666666666666666666666666666");
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "获取所有未读数",
+                    onPressed: () async {
+                      int num = await SyClient.getInstance()
+                          .getConversationManager()
+                          .getAllUnReadNumBySessionType(sessionType: SessionType.PRIVATE);
+                      setState(() {
+                        _loginInfo = "${num}";
+                      });
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "获取单个会话的未读数",
+                    onPressed: () async {
+                      int num = await SyClient.getInstance()
+                          .getConversationManager()
+                          .getUnReadNum(
+                              "7155793691347525633_P__66666666666666666666666666666666");
+                      setState(() {
+                        _loginInfo = "${num}";
+                      });
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "获取会话列表",
+                    onPressed: () {
+                      SyClient.getInstance()
+                          .getConversationManager()
+                          .getConversationList(
+                              callback: SyCallBack<List<SyConversation>>(
+                                  onSuccess: (List<SyConversation> t) {
+                                    setState(() {
+                                      _loginInfo = "${t[0].sendUserId}";
+                                      print("----------->${t[0].sendUserId}");
+                                    });
+                                  },
+                                  onFail: (String code, String errMsg) {}));
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "监听会话变更",
+                    onPressed: () {
+                      SyClient.getInstance()
+                          .getConversationManager()
+                          .addConversationListener(ConversationListener((list) {
+                        setState(() {
+                          _loginInfo = "${list.toString()}";
+                          print("----------->${list[0].lastMessage}");
+                        });
+                      }));
                     })
               ],
             ),

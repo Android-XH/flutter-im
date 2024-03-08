@@ -18,7 +18,7 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel =
-      const MethodChannel(ChannelCommon.syClientMethodChannel);
+  const MethodChannel(ChannelCommon.syClientMethodChannel);
 
   @override
   void getConversationList(
@@ -28,7 +28,7 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
         .then((value) {
       List<dynamic> list = jsonDecode(value);
       callback.onSuccess.call(
-          list.map((e) => SyConversation.fromJson(jsonDecode(value))).toList());
+          list.map((conversion) => SyConversation.fromJson(conversion)).toList());
     }).catchError((e) {
       callback.onFail.call(e.code, e.message!);
     });
@@ -42,7 +42,7 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
     methodChannel
         .invokeMethod(SyClientMethodCommon.createSignConversation, arguments)
         .then((value) =>
-            callback.onSuccess(SyConversation.fromJson(jsonDecode(value))))
+        callback.onSuccess(SyConversation.fromJson(jsonDecode(value))))
         .catchError((e) => callback.onFail.call(e.code, e.message!));
   }
 
@@ -54,54 +54,66 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
   }
 
   @override
-  void createSignConversationByContact(
-      {required SyContact contact,
-      required SyCallBack<SyConversation> callback}) {
+  void createSignConversationByContact({required SyContact contact,
+    required SyCallBack<SyConversation> callback}) {
     Map<String, String> arguments = <String, String>{};
     arguments.putIfAbsent("contact", () => jsonEncode(contact.toJson()));
     methodChannel
         .invokeMethod(SyClientMethodCommon.createSignConversation, arguments)
         .then((value) =>
-            callback.onSuccess(SyConversation.fromJson(jsonDecode(value))))
+        callback.onSuccess(SyConversation.fromJson(jsonDecode(value))))
         .catchError((e) => callback.onFail.call(e.code, e.message!));
   }
 
   @override
-  Future<Long> getAllUnReadNum() async {
-    return await methodChannel
+  Future<dynamic> getAllUnReadNum() async {
+    return methodChannel
         .invokeMethod(SyClientMethodCommon.getAllUnReadNum);
   }
 
   @override
-  Future<Long> getAllUnReadNumBySessionType(
+  Future<dynamic> getAllUnReadNumBySessionType(
       {required SessionType sessionType}) async {
     Map<String, String> arguments = <String, String>{};
-    arguments.putIfAbsent("sessionType", () => jsonEncode(sessionType));
-    return await methodChannel
-        .invokeMethod(SyClientMethodCommon.getAllUnReadNum);
+    var type = 1;
+    switch (sessionType) {
+      case SessionType.PRIVATE:
+        type = 1;
+        break;
+      case SessionType.GROUP:
+        type = 2;
+        break;
+      case SessionType.DEFAULT:
+        type = -1;
+        break;
+    }
+    arguments.putIfAbsent("sessionType", () => jsonEncode(type));
+    return methodChannel
+        .invokeMethod(SyClientMethodCommon.getAllUnReadNum, arguments);
   }
 
   @override
-  Future<String> getSessionIdByUserId(String userId) async {
+  Future<dynamic> getSessionIdByUserId(String userId) async {
     Map<String, String> arguments = <String, String>{};
     arguments.putIfAbsent("userId", () => jsonEncode(userId));
-    return await methodChannel
+    return methodChannel
         .invokeMethod(SyClientMethodCommon.getSessionIdByUserId);
   }
 
   @override
-  Future<Long> getUnReadNum(String sessionId) async {
+  Future<dynamic> getUnReadNum(String sessionId) async {
     Map<String, String> arguments = <String, String>{};
     arguments.putIfAbsent("sessionId", () => jsonEncode(sessionId));
-    return await methodChannel.invokeMethod(SyClientMethodCommon.getUnReadNum);
+    return methodChannel.invokeMethod(
+        SyClientMethodCommon.getUnReadNum, arguments);
   }
 
   @override
   void removeChatting(String sessionId) async {
     Map<String, String> arguments = <String, String>{};
     arguments.putIfAbsent("sessionId", () => jsonEncode(sessionId));
-    return await methodChannel
-        .invokeMethod(SyClientMethodCommon.removeChatting);
+    methodChannel
+        .invokeMethod(SyClientMethodCommon.removeChatting, arguments);
   }
 
   @override
@@ -123,10 +135,9 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
   }
 
   @override
-  void setConversationTopping(
-      {required String sessionId,
-      required topping,
-      required SyCallBack<bool> callback}) {
+  void setConversationTopping({required String sessionId,
+    required topping,
+    required SyCallBack<bool> callback}) {
     Map<String, String> arguments = <String, String>{};
     arguments.putIfAbsent("sessionId", () => jsonEncode(sessionId));
     arguments.putIfAbsent("topping", () => jsonEncode(topping));

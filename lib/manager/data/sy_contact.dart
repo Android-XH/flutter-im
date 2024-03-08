@@ -1,14 +1,14 @@
 class SyContact {
   SyContact({
     String? avatar,
-    dynamic birthday,
-    dynamic email,
+    String? birthday,
+    String? email,
     Extension? extension,
     String? gender,
-    dynamic label,
-    dynamic mobile,
+    String? label,
+    String?mobile,
     String? nickName,
-    dynamic remark,
+    String? remark,
     num? status,
     num? type,
     String? userId,}){
@@ -41,26 +41,26 @@ class SyContact {
     _userId = json['userId'];
   }
   String? _avatar;
-  dynamic _birthday;
-  dynamic _email;
+  String? _birthday;
+  String? _email;
   Extension? _extension;
   String? _gender;
-  dynamic _label;
-  dynamic _mobile;
+  String? _label;
+  String? _mobile;
   String? _nickName;
-  dynamic _remark;
+  String? _remark;
   num? _status;
   num? _type;
   String? _userId;
   SyContact copyWith({  String? avatar,
-    dynamic birthday,
-    dynamic email,
+    String? birthday,
+    String? email,
     Extension? extension,
     String? gender,
-    dynamic label,
-    dynamic mobile,
+    String? label,
+    String? mobile,
     String? nickName,
-    dynamic remark,
+    String? remark,
     num? status,
     num? type,
     String? userId,
@@ -78,17 +78,47 @@ class SyContact {
     userId: userId ?? _userId,
   );
   String? get avatar => _avatar;
-  dynamic get birthday => _birthday;
-  dynamic get email => _email;
+  set avatar(String? value) {
+    _avatar = value;
+  }
+  String? get birthday => _birthday;
+  set birthday(String? value) {
+    _birthday = value;
+  }
+  String? get email => _email;
+  set email(String? value) {
+    _email = value;
+  }
   Extension? get extension => _extension;
+  set extension(Extension? value) {
+    _extension = value;
+  }
   String? get gender => _gender;
-  dynamic get label => _label;
-  dynamic get mobile => _mobile;
+  set gender(String? value) {
+    _gender = value;
+  }
+  String? get label => _label;
+  set label(String? value) {
+    _label = value;
+  }
+  String? get mobile => _mobile;
+  set mobile(String? value) {
+    _mobile = value;
+  }
   String? get nickName => _nickName;
-  dynamic get remark => _remark;
+  set nickName(String? value) {
+    _nickName = value;
+  }
+  String? get remark => _remark;
+  set remark(String? value) {
+    _remark = value;
+  }
   num? get status => _status;
   num? get type => _type;
   String? get userId => _userId;
+  set userId(String? value) {
+    _userId = value;
+  }
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
