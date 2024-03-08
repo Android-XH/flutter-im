@@ -6,9 +6,13 @@ import 'data/sy_contact.dart';
 import 'data/sy_conversation.dart';
 
 abstract class ConversationManagerInterface {
-
+  /**
+   * 添加会话变更监听
+   */
   void addConversationListener(ConversationListener conversationListener);
-
+  /**
+   * 移除会话变更监听
+   */
   void removeConversationListener(ConversationListener conversationListener);
 
   /**
