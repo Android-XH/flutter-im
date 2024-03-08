@@ -46,12 +46,7 @@ class ChatManager implements ChatManagerInterface {
     SyImSdkChat.instance.deleteMessage(msgId: msgId, callBack: callBack);
   }
 
-  @override
-  void getLastMessage(
-      {required String sessionId, required SyCallBack<SyMessage> callBack}) {
-    SyImSdkChat.instance
-        .getLastMessage(sessionId: sessionId, callBack: callBack);
-  }
+
 
   @override
   void getMessage(
