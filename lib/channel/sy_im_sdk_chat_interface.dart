@@ -65,7 +65,7 @@ abstract class SyImSdkChat extends PlatformInterface {
   /// 删除消息
   /// @param msgId
   void deleteMessage(
-      {required String msgId, required SyCallBack<bool> callBack}) {
+      {required String msgId,  String? sessionId, required SyCallBack<bool> callBack}) {
     throw UnimplementedError('deleteMessage() has not been implemented.');
   }
 }

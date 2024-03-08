@@ -59,9 +59,12 @@ class SyImSdkChatImpl extends SyImSdkChat {
 
   @override
   void deleteMessage(
-      {required String msgId, required SyCallBack<bool> callBack}) {
+      {required String msgId,  String? sessionId, required SyCallBack<bool> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("msgId", () => msgId);
+    if (sessionId != null && sessionId.isNotEmpty) {
+      arguments.putIfAbsent("sessionId", () => sessionId);
+    }
     methodChannel
         .invokeMethod(SyClientMethodCommon.deleteMessage, arguments)
         .then((value) => callBack.onSuccess.call(value))
