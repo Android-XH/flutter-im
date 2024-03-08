@@ -38,7 +38,7 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
   void createSignConversationByUid(
       {required String uuid, required SyCallBack<SyConversation> callback}) {
     Map<String, String> arguments = <String, String>{};
-    arguments.putIfAbsent("uuid", () => uuid);
+    arguments.putIfAbsent("userId", () => uuid);
     methodChannel
         .invokeMethod(SyClientMethodCommon.createSignConversation, arguments)
         .then((value) =>
@@ -83,6 +83,8 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
 
   @override
   Future<String> getSessionIdByUserId(String userId) async {
+    Map<String, String> arguments = <String, String>{};
+    arguments.putIfAbsent("userId", () => jsonEncode(userId));
     return await methodChannel
         .invokeMethod(SyClientMethodCommon.getSessionIdByUserId);
   }
