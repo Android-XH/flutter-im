@@ -4,6 +4,7 @@ import 'package:sy_im_sdk/config/sy_options.dart';
 import 'package:sy_im_sdk/listener/sy_on_dart_connect_listener.dart';
 import 'package:sy_im_sdk/listener/sy_on_message_listener.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
+import 'package:sy_im_sdk/manager/data/sy_message.dart';
 import 'package:sy_im_sdk/sy_client.dart';
 
 class MyExampleApp extends StatefulWidget {
@@ -15,7 +16,7 @@ class MyExampleApp extends StatefulWidget {
 
 class _MyAppState extends State<MyExampleApp> {
   String _connectStatus = 'Unknown';
-  String _loginInfo = 'Unknown';
+  String _result = 'Unknown';
 
   @override
   void initState() {
@@ -79,7 +80,7 @@ class _MyAppState extends State<MyExampleApp> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Text('login userInfo is: $_loginInfo'),
+                  child: Text('result : $_result'),
                 ),
                 _buildButton(
                     title: "TOKEN登录",
@@ -89,7 +90,7 @@ class _MyAppState extends State<MyExampleApp> {
                         callback: SyCallBack(onSuccess: (authInfo) {
                           print("登录成功:${authInfo.toJson()}");
                           setState(() {
-                            _loginInfo = "${authInfo.toJson()}";
+                            _result = "${authInfo.toJson()}";
                           });
                         }, onFail: (code, msg) {
                           print("登录失败 code:$code msg:$msg");
@@ -107,7 +108,7 @@ class _MyAppState extends State<MyExampleApp> {
                         callback: SyCallBack(onSuccess: (authInfo) {
                           print("登录成功:${authInfo.toJson()}");
                           setState(() {
-                            _loginInfo = "${authInfo.toJson()}";
+                            _result = "${authInfo.toJson()}";
                           });
                         }, onFail: (code, msg) {
                           print("登录失败 code:$code msg:$msg");
@@ -125,7 +126,7 @@ class _MyAppState extends State<MyExampleApp> {
                           callback: SyCallBack(onSuccess: (msg) {
                         print("退出登录成功:$msg");
                         setState(() {
-                          _loginInfo = "已退出登录";
+                          _result = "已退出登录";
                         });
                       }, onFail: (code, msg) {
                         print("退出登录失败code:$code msg:$msg");
@@ -138,11 +139,34 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "添加消息监听",
                     onPressed: () {
                       SyClient.getInstance().chatManager().addMessageListener(
-                          OnMessageListener(
-                              onCmdMsg: (syMessage) {},
-                              onMessage: (syMessageList) {}));
+                              OnMessageListener(
+                                  onCmdMsg: (List<SyMessage> syMessage) {
+                            String result = "onCmdMsg：";
+                            syMessage.forEach((e) {
+                              result += e.content!;
+                            });
+                            setState(() {
+                              _result = result;
+                            });
+                          }, onMessage: (List<SyMessage> syMessage) {
+                            String result = "onMessage：";
+                            syMessage.forEach((e) {
+                              result += e.content!;
+                            });
+                            setState(() {
+                              _result = result;
+                            });
+                          }, onStatusChange: (List<SyMessage> syMessage) {
+                            String result = "onCmdMsg：";
+                            syMessage.forEach((e) {
+                              result += e.content!;
+                            });
+                            setState(() {
+                              _result = result;
+                            });
+                          }));
                     }),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 _buildButton(
@@ -157,7 +181,7 @@ class _MyAppState extends State<MyExampleApp> {
                               }, onFail: (c, m) {
                                 print("------------->${m}");
                               }));
-                    })
+                    }),
               ],
             ),
           )),

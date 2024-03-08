@@ -9,7 +9,7 @@ class SyClientMethodCommon {
   //chat
   static const String sendMessage = "sendMessage";
   static const String saveMessageToLocal = "saveMessageToLocal";
-  static const String getLastMessage = "getLastMessage";
+
   static const String getMessageList = "getMessageList";
   static const String deleteMessage = "deleteMessage";
   static const String updateMessage = "updateMessage";

@@ -6,9 +6,11 @@ import android.os.Looper;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import io.flutter.Log;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.BasicMessageChannel;
 import io.flutter.plugin.common.MethodCall;
@@ -88,30 +90,41 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
     public static final OnMessageListener onMessageListener = new OnMessageListener() {
         @Override
         public void onMessage(SyMessage syMessage) {
+            Log.i("OnMessageListener onMessage", GsonUtil.toJson(syMessage));
             MessageData messageData = new MessageData();
             messageData.setType("onMessage");
-            messageData.setData(GsonUtil.toJson(syMessage));
+
+            List<SyMessage> syMessageList = new ArrayList<>();
+            syMessageList.add(syMessage);
+            messageData.setData(GsonUtil.toJson(syMessageList));
             postChatMessageData(messageData);
         }
 
         @Override
         public void onCustomMsg(SyMessage syMessage) {
+            Log.i("OnMessageListener onCustomMsg",GsonUtil.toJson(syMessage));
             MessageData messageData = new MessageData();
             messageData.setType("onCustomMsg");
-            messageData.setData(GsonUtil.toJson(syMessage));
+            List<SyMessage> syMessageList = new ArrayList<>();
+            syMessageList.add(syMessage);
+            messageData.setData(GsonUtil.toJson(syMessageList));
             postChatMessageData(messageData);
         }
 
         @Override
         public void onCmdMsg(SyMessage syMessage) {
+            Log.i("OnMessageListener onCmdMsg", GsonUtil.toJson(syMessage));
             MessageData messageData = new MessageData();
             messageData.setType("onCmdMsg");
-            messageData.setData(GsonUtil.toJson(syMessage));
+            List<SyMessage> syMessageList = new ArrayList<>();
+            syMessageList.add(syMessage);
+            messageData.setData(GsonUtil.toJson(syMessageList));
             postChatMessageData(messageData);
         }
 
         @Override
         public void onUnLineMsg(List<SyMessage> list) {
+
             MessageData messageData = new MessageData();
             messageData.setType("onUnLineMsg");
             messageData.setData(GsonUtil.toJson(list));
@@ -120,6 +133,7 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
 
         @Override
         public void onStatusChange(List<SyMessage> list) {
+            Log.i("OnMessageListener onStatusChange", list.toString());
             MessageData messageData = new MessageData();
             messageData.setType("onStatusChange");
             messageData.setData(GsonUtil.toJson(list));
@@ -162,7 +176,7 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
 
     }
 
-    public static void postConnectData(String type, int code, String msg) {
+    private static void postConnectData(String type, int code, String msg) {
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -176,7 +190,7 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
     }
 
     //回调会话
-    public static void postConversationData(List<SyConversation> list) {
+    private static void postConversationData(List<SyConversation> list) {
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -186,7 +200,7 @@ public class SyImSdkPlugin implements FlutterPlugin, MethodCallHandler {
     }
 
     //回调消息
-    public static void postChatMessageData(MessageData messageData) {
+    private static void postChatMessageData(MessageData messageData) {
         handler.post(new Runnable() {
             @Override
             public void run() {

@@ -37,5 +37,44 @@
         "className": "SyClientInit"
       }
     ]
+  },
+  {
+    "title": "消息管理",
+    "children": [
+      {
+        "title": "添加消息监听",
+        "className": "AddMessageListener"
+      },
+      {
+        "title": "移除消息监听",
+        "className": "RemoveMessageListener"
+      },
+      {
+        "title": "获取聊天记录",
+        "className": "GetMessageList"
+      },
+      {
+        "title": "发送消息",
+        "className": "SendMessage"
+      },
+      {
+        "title": "更新消息",
+        "className": "UpdateMessage"
+      },
+      {
+        "title": "删除消息",
+        "className": "DeleteMessage"
+      },
+      {
+        "title": "根据消息ID获取消息",
+        "className": "GetMessage"
+      },
+      {
+        "title": "保存消息到本地",
+        "className": "SaveMessageToLocal"
+      }
+
+
+    ]
   }
 ]
