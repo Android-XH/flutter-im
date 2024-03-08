@@ -13,7 +13,7 @@ import 'package:sy_im_sdk/manager/data/sy_contact.dart';
 /// sessionType : 1
 /// status : 1
 /// type : 0
-/// uri : null
+/// uri : data/image/xxxx.png
 
 class SyMessage {
   SyMessage({
@@ -24,13 +24,12 @@ class SyMessage {
     SyContact? receiveUserInfo,
     String? requestId,
     bool? send,
-    dynamic sendListener,
     SyContact? sendUserInfo,
     String? sessionId,
     num? sessionType,
     num? status,
     num? type,
-    dynamic uri,
+    Uri? uri,
   }) {
     _content = content;
     _msgId = msgId;
@@ -39,7 +38,6 @@ class SyMessage {
     _receiveUserInfo = receiveUserInfo;
     _requestId = requestId;
     _send = send;
-    _sendListener = sendListener;
     _sendUserInfo = sendUserInfo;
     _sessionId = sessionId;
     _sessionType = sessionType;
@@ -58,7 +56,6 @@ class SyMessage {
         : null;
     _requestId = json['requestId'];
     _send = json['send'];
-    _sendListener = json['sendListener'];
     _sendUserInfo = json['sendUserInfo'] != null
         ? SyContact.fromJson(json['sendUserInfo'])
         : null;
@@ -76,13 +73,13 @@ class SyMessage {
   SyContact? _receiveUserInfo;
   String? _requestId;
   bool? _send;
-  dynamic _sendListener;
+
   SyContact? _sendUserInfo;
   String? _sessionId;
   num? _sessionType;
   num? _status;
   num? _type;
-  dynamic _uri;
+  Uri? _uri;
 
   SyMessage copyWith({
     String? content,
@@ -92,13 +89,13 @@ class SyMessage {
     SyContact? receiveUserInfo,
     String? requestId,
     bool? send,
-    dynamic sendListener,
+
     SyContact? sendUserInfo,
     String? sessionId,
     num? sessionType,
     num? status,
     num? type,
-    dynamic uri,
+    Uri? uri,
   }) =>
       SyMessage(
         content: content ?? _content,
@@ -108,7 +105,6 @@ class SyMessage {
         receiveUserInfo: receiveUserInfo ?? _receiveUserInfo,
         requestId: requestId ?? _requestId,
         send: send ?? _send,
-        sendListener: sendListener ?? _sendListener,
         sendUserInfo: sendUserInfo ?? _sendUserInfo,
         sessionId: sessionId ?? _sessionId,
         sessionType: sessionType ?? _sessionType,
@@ -131,7 +127,6 @@ class SyMessage {
 
   bool? get send => _send;
 
-  dynamic get sendListener => _sendListener;
 
   SyContact? get sendUserInfo => _sendUserInfo;
 
@@ -156,7 +151,6 @@ class SyMessage {
     }
     map['requestId'] = _requestId;
     map['send'] = _send;
-    map['sendListener'] = _sendListener;
     if (_sendUserInfo != null) {
       map['sendUserInfo'] = _sendUserInfo?.toJson();
     }
