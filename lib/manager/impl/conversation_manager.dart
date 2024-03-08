@@ -59,9 +59,9 @@ class ConversationManager extends ConversationManagerInterface {
 
   @override
   void createSignConversationByUid(
-      {required String uuid, required SyCallBack<SyConversation> callback}) {
+      {required String userId, required SyCallBack<SyConversation> callback}) {
     SyImSdkConversation.instance
-        .createSignConversationByUid(uuid: uuid, callback: callback);
+        .createSignConversationByUid(userId: userId, callback: callback);
   }
 
   @override

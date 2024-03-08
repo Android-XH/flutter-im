@@ -61,7 +61,7 @@ flutter:
     - ./assets/code/
     - ./assets/code/chat/
     - ./assets/code/markdown/
-
+    - ./assets/code/conversion/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
