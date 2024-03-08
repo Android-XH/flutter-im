@@ -33,10 +33,6 @@ abstract class ChatManagerInterface {
   void updateMessage(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack});
 
-  /// 获取会话最后一条消息记录
-  /// @param sessionId 会话ID
-  void getLastMessage(
-      {required String sessionId, required SyCallBack<SyMessage> callBack});
 
   /// 查询历史消息
   /// @param starMessage 起始消息，初始化可传入空

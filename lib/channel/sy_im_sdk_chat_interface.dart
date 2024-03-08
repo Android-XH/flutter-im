@@ -54,12 +54,6 @@ abstract class SyImSdkChat extends PlatformInterface {
     throw UnimplementedError('updateMessage() has not been implemented.');
   }
 
-  /// 获取会话最后一条消息记录
-  /// @param sessionId 会话ID
-  void getLastMessage(
-      {required String sessionId, required SyCallBack<SyMessage> callBack}) {
-    throw UnimplementedError('getLastMessage() has not been implemented.');
-  }
 
   /// 查询历史消息
   /// @param starMessage 起始消息
