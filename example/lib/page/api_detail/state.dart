@@ -16,7 +16,6 @@ class ApiDetailState {
     var json = parameters["children"];
     var jsonStr = jsonDecode(json!);
     children = Children.fromJson(jsonStr);
-    print("children:${children.className}");
   }
 
 
