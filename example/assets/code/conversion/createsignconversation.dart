@@ -7,7 +7,7 @@ class CreateSignConversation {
 
   /*当本地没有和对方的会话时，需要创建与对方的的会话*/
   void createSignConversationByUid(String userId) {
-    SyClient.getInstance().getConversationManager().createSignConversationByUid(userId: userId, callback: SyCallBack<SyConversation>(
+    SyClient.getInstance().conversationManager().createSignConversationByUid(userId: userId, callback: SyCallBack<SyConversation>(
             onSuccess: (conversation) {
               /*会回调会话的信息*/
               /*sessionId 是会话id,发送消息需要*/
@@ -29,7 +29,7 @@ class CreateSignConversation {
     contact.userId="";
     contact.avatar="";
     contact.nickName="";
-    SyClient.getInstance().getConversationManager().createSignConversationByContact(contact: contact, callback: SyCallBack<SyConversation>(
+    SyClient.getInstance().conversationManager().createSignConversationByContact(contact: contact, callback: SyCallBack<SyConversation>(
         onSuccess: (conversation) {
           /*会回调会话的信息*/
           /*sessionId 是会话id,发送消息需要*/

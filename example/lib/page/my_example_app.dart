@@ -177,7 +177,7 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "用userid创建会话",
                     onPressed: () {
                       SyClient.getInstance()
-                          .getConversationManager()
+                          .conversationManager()
                           .createSignConversationByUid(
                               userId: "66666666666666666666666666666666",
                               callback: SyCallBack(
@@ -197,7 +197,7 @@ class _MyAppState extends State<MyExampleApp> {
                       var contact = SyContact();
                       contact.userId = "66666666666666666666666666666666";
                       SyClient.getInstance()
-                          .getConversationManager()
+                          .conversationManager()
                           .createSignConversationByContact(
                               contact: contact,
                               callback: SyCallBack(onSuccess: (conversion) {
@@ -216,7 +216,7 @@ class _MyAppState extends State<MyExampleApp> {
                 _buildButton(
                     title: "进入会话",
                     onPressed: () {
-                      SyClient.getInstance().getConversationManager().addChatting(
+                      SyClient.getInstance().conversationManager().addChatting(
                           "7155793691347525633_P__66666666666666666666666666666666");
                     }),
                 SizedBox(
@@ -226,7 +226,7 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "获取所有未读数",
                     onPressed: () async {
                       int num = await SyClient.getInstance()
-                          .getConversationManager()
+                          .conversationManager()
                           .getAllUnReadNumBySessionType(
                               sessionType: SessionType.PRIVATE);
                       setState(() {
@@ -240,7 +240,7 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "获取单个会话的未读数",
                     onPressed: () async {
                       int num = await SyClient.getInstance()
-                          .getConversationManager()
+                          .conversationManager()
                           .getUnReadNum(
                               "7155793691347525633_P__66666666666666666666666666666666");
                       setState(() {
@@ -254,7 +254,7 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "获取会话列表",
                     onPressed: () {
                       SyClient.getInstance()
-                          .getConversationManager()
+                          .conversationManager()
                           .getConversationList(
                               callback: SyCallBack<List<SyConversation>>(
                                   onSuccess: (List<SyConversation> t) {
@@ -276,7 +276,7 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "监听会话变更",
                     onPressed: () {
                       SyClient.getInstance()
-                          .getConversationManager()
+                          .conversationManager()
                           .addConversationListener(ConversationListener((list) {
                         setState(() {
                           _result = "${list.toString()}";
@@ -292,7 +292,7 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "推出会话",
                     onPressed: () {
                       SyClient.getInstance()
-                          .getConversationManager()
+                          .conversationManager()
                           .removeChatting("7155793691347525633_P__66666666666666666666666666666666");
                     })
               ],
