@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)enumWithMethodName:(NSString *)methodName methodHandler:(id<SYIMPMethodHandler>)methodHandler;
 
-- (NSArray<SYIMPMethodEnum *> *)getValues;
++ (NSArray<SYIMPMethodEnum *> *)getValues;
 
 @end
 

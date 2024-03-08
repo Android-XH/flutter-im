@@ -6,6 +6,13 @@
 //
 
 #import "SYIMPMethodEnum.h"
+#import "SYIMPClientInitHandler.h"
+#import "SYIMPAddConnectListenerHandler.h"
+#import "SYIMPLoginByTokenHandler.h"
+#import "SYIMPLoginByUuidHandler.h"
+#import "SYIMPLogOutHandler.h"
+#import "SYIMPCreateSignConversationHandler.h"
+#import "SYIMPGetConversationListHandler.h"
 
 @implementation SYIMPMethodEnum
 
@@ -16,7 +23,19 @@
     return methodEnum;
 }
 
-- (NSArray<SYIMPMethodEnum *> *)getValues {
-    return nil;
+static NSArray<SYIMPMethodEnum *> *values = nil;
++ (NSArray<SYIMPMethodEnum *> *)getValues {
+    if (values == nil) {
+        values = @[
+            [SYIMPMethodEnum enumWithMethodName:@"init" methodHandler:SYIMPClientInitHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"loginByToken" methodHandler:SYIMPLoginByTokenHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"loginByAccountId" methodHandler:SYIMPLoginByUuidHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"logOut" methodHandler:SYIMPLogOutHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"addConnectListener" methodHandler:SYIMPAddConnectListenerHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"getConversationList" methodHandler:SYIMPGetConversationListHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"createSignConversation" methodHandler:SYIMPCreateSignConversationHandler.new],
+        ];
+    }
+    return values;
 }
 @end

@@ -1,53 +1,11 @@
 PODS:
-  - AFNetworking (4.0.1):
-    - AFNetworking/NSURLSession (= 4.0.1)
-    - AFNetworking/Reachability (= 4.0.1)
-    - AFNetworking/Security (= 4.0.1)
-    - AFNetworking/Serialization (= 4.0.1)
-    - AFNetworking/UIKit (= 4.0.1)
-  - AFNetworking/NSURLSession (4.0.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (4.0.1)
-  - AFNetworking/Security (4.0.1)
-  - AFNetworking/Serialization (4.0.1)
-  - AFNetworking/UIKit (4.0.1):
-    - AFNetworking/NSURLSession
-  - CocoaAsyncSocket (7.6.5)
-  - CocoaLumberjack (3.8.4):
-    - CocoaLumberjack/Core (= 3.8.4)
-  - CocoaLumberjack/Core (3.8.4)
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - MJExtension (3.4.1)
-  - Protobuf (3.25.3)
-  - ReactiveObjC (3.1.1)
-  - RealReachability (1.4.1):
-    - RealReachability/Connection (= 1.4.1)
-    - RealReachability/Ping (= 1.4.1)
-  - RealReachability/Connection (1.4.1)
-  - RealReachability/Ping (1.4.1)
-  - SQLiteRepairKit (1.2.2):
-    - WCDBOptimizedSQLCipher (~> 1.2.0)
   - sy_im_sdk (0.0.1):
     - Flutter
-    - MJExtension
     - SYIM
-  - SYIM (0.1.2):
-    - AFNetworking
-    - CocoaAsyncSocket
-    - CocoaLumberjack
-    - MJExtension
-    - Protobuf
-    - ReactiveObjC
-    - RealReachability
-    - WCDB (~> 1.0.7.5)
-  - WCDB (1.0.7.5):
-    - SQLiteRepairKit (~> 1.2.0)
-    - WCDBOptimizedSQLCipher (~> 1.2.0)
-  - WCDBOptimizedSQLCipher (1.2.1)
+  - SYIM (0.2.5)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -56,17 +14,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AFNetworking
-    - CocoaAsyncSocket
-    - CocoaLumberjack
-    - MJExtension
-    - Protobuf
-    - ReactiveObjC
-    - RealReachability
-    - SQLiteRepairKit
     - SYIM
-    - WCDB
-    - WCDBOptimizedSQLCipher
 
 EXTERNAL SOURCES:
   Flutter:
@@ -77,20 +25,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sy_im_sdk/ios"
 
 SPEC CHECKSUMS:
-  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
-  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  CocoaLumberjack: df59726690390bb8aaaa585938564ba1c8dbbb44
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
-  Protobuf: 8e9074797a13c484a79959fdb819ef4ae6da7dbe
-  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  RealReachability: 828e74e3a1e89ba8f54395344637689cf4065c36
-  SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
-  sy_im_sdk: 977e19a92ab0676eb4a0a028090a6b79a8bc4e5a
-  SYIM: 867ec5b3774f62af7f6a9656f14816e4be7eea36
-  WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
-  WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
+  sy_im_sdk: 77705eb43931276850e86614069df7539cd6ee48
+  SYIM: f26fc990b97b27a7a407637d7346bfda80723a27
 
 PODFILE CHECKSUM: 6e700dec67e6deac9b1c69bb14c49a2217a12d15
 
