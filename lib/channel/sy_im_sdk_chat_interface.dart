@@ -40,7 +40,7 @@ abstract class SyImSdkChat extends PlatformInterface {
   /// 获取消息
   /// @param syMessage
   void getMessage(
-      {required String msgId, required SyCallBack<SyMessage> callBack}) {
+      {required String msgId,       String? sessionId, required SyCallBack<SyMessage> callBack}) {
     throw UnimplementedError('getMessage() has not been implemented.');
   }
 

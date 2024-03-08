@@ -30,8 +30,8 @@ class SyImSdkChatImpl extends SyImSdkChat {
     methodChannel
         .invokeMethod(SyClientMethodCommon.sendMessage,
             _createMessageArguments(syMessage))
-        .then((value) => callBack.onSuccess
-            .call(SyMessage.fromJson(jsonDecode(value))))
+        .then((value) =>
+            callBack.onSuccess.call(SyMessage.fromJson(jsonDecode(value))))
         .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
@@ -41,8 +41,8 @@ class SyImSdkChatImpl extends SyImSdkChat {
     methodChannel
         .invokeMethod(SyClientMethodCommon.saveMessageToLocal,
             _createMessageArguments(syMessage))
-        .then((value) => callBack.onSuccess
-            .call(SyMessage.fromJson(jsonDecode(value))))
+        .then((value) =>
+            callBack.onSuccess.call(SyMessage.fromJson(jsonDecode(value))))
         .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
@@ -52,8 +52,8 @@ class SyImSdkChatImpl extends SyImSdkChat {
     methodChannel
         .invokeMethod(SyClientMethodCommon.updateMessage,
             _createMessageArguments(syMessage))
-        .then((value) => callBack.onSuccess
-            .call(SyMessage.fromJson(jsonDecode(value))))
+        .then((value) =>
+            callBack.onSuccess.call(SyMessage.fromJson(jsonDecode(value))))
         .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 
@@ -67,7 +67,6 @@ class SyImSdkChatImpl extends SyImSdkChat {
         .then((value) => callBack.onSuccess.call(value))
         .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
-
 
   @override
   void getMessageList(
@@ -88,13 +87,18 @@ class SyImSdkChatImpl extends SyImSdkChat {
 
   @override
   void getMessage(
-      {required String msgId, required SyCallBack<SyMessage> callBack}) {
+      {required String msgId,
+      String? sessionId,
+      required SyCallBack<SyMessage> callBack}) {
     Map<String, String> arguments = {};
     arguments.putIfAbsent("msgId", () => msgId);
+    if (sessionId != null && sessionId.isNotEmpty) {
+      arguments.putIfAbsent("sessionId", () => sessionId);
+    }
     methodChannel
         .invokeMethod(SyClientMethodCommon.getMessage, arguments)
-        .then((value) => callBack.onSuccess
-            .call(SyMessage.fromJson(jsonDecode(value))))
+        .then((value) =>
+            callBack.onSuccess.call(SyMessage.fromJson(jsonDecode(value))))
         .catchError((e) => callBack.onFail.call(e.code, e.message!));
   }
 }

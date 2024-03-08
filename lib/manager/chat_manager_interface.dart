@@ -20,8 +20,9 @@ abstract class ChatManagerInterface {
   /// 查询消息
   /// @param msgId    消息ID
   /// @param callback
+  /// @param sessionId 会话ID iOS 查询消息需要该参数
   void getMessage(
-      {required String msgId, required SyCallBack<SyMessage> callBack});
+      {required String msgId,String? sessionId, required SyCallBack<SyMessage> callBack});
 
   /// 保存到消息到本地，并不发送到服务器
   /// @param syMessage

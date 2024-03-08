@@ -79,7 +79,9 @@ class ChatManager implements ChatManagerInterface {
 
   @override
   void getMessage(
-      {required String msgId, required SyCallBack<SyMessage> callBack}) {
+      {required String msgId,
+      String? sessionId,
+      required SyCallBack<SyMessage> callBack}) {
     SyImSdkChat.instance.getMessage(msgId: msgId, callBack: callBack);
   }
 
