@@ -151,13 +151,17 @@
         if (message.messageBody.type == SYIMMessageTypeCustom) {
             messageData.type = @"onCustomMsg";
             [self postChatMessageData:messageData];
-        } else if (message.messageBody.type == SYIMMessageTypeCmd) {
-            messageData.type = @"onCmdMsg";
-            [self postChatMessageData:messageData];
         }
         messageData.type = @"onMessage";
         [self postChatMessageData:messageData];
     }
+}
+
+- (void)onCmdMsg:(SYIMMessage *)message {
+    SYIMPMessageData *messageData = [[SYIMPMessageData alloc] init];
+    messageData.data = [message mj_JSONString];
+    messageData.type = @"onCmdMsg";
+    [self postChatMessageData:messageData];
 }
 
 /**
