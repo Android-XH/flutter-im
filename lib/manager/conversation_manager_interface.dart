@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import '../common/session_type.dart';
 import '../listener/sy_call_back.dart';
@@ -95,6 +94,10 @@ abstract class ConversationManagerInterface {
    * @param sessionId
    */
   void restUnReadCount(String sessionId);
-
+  /**
+   * 根据聊天类型获取所有会话未读消息数
+   *
+   * @return
+   */
   Future<dynamic> getAllUnReadNumBySessionType({required SessionType sessionType});
 }
