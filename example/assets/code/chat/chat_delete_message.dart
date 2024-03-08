@@ -7,6 +7,7 @@ class AddMessageListener {
   void addMessageListener() {
     SyClient.getInstance().chatManager().deleteMessage(
         msgId: "消息ID",
+        sessionId: "会话 ID",
         callBack: SyCallBack(
           onSuccess: (bool status) {
             //todo 处理删除成功逻辑

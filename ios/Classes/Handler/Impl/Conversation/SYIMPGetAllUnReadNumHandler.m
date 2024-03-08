@@ -12,7 +12,7 @@
     NSDictionary *map = call.arguments;
     NSString *sessionType = map[@"sessionType"];
     if (sessionType) {
-        NSInteger allUnReadCount = [[SYIMManager shared].conversationManager getAllUnReadCount];
+        NSInteger allUnReadCount = [[SYIMManager shared].conversationManager getAllUnReadCountWithSessionType:[sessionType integerValue]];
         result(@(allUnReadCount));
     } else {
         NSInteger allUnReadCount = [[SYIMManager shared].conversationManager getAllUnReadCount];
