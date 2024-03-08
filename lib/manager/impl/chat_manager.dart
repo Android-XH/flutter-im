@@ -74,7 +74,7 @@ class ChatManager implements ChatManagerInterface {
   @override
   void deleteMessage(
       {required String msgId,
-      String? sessionId,
+        required String sessionId,
       required SyCallBack<bool> callBack}) {
     SyImSdkChat.instance
         .deleteMessage(msgId: msgId, sessionId: sessionId, callBack: callBack);
@@ -83,7 +83,7 @@ class ChatManager implements ChatManagerInterface {
   @override
   void getMessage(
       {required String msgId,
-      String? sessionId,
+        required String sessionId,
       required SyCallBack<SyMessage> callBack}) {
     SyImSdkChat.instance
         .getMessage(msgId: msgId, sessionId: sessionId, callBack: callBack);
