@@ -6,14 +6,16 @@ import 'package:sy_im_sdk/sy_client.dart';
 class AddMessageListener {
   void addMessageListener() {
     SyClient.getInstance().chatManager().deleteMessage(
-        msgId: "消息ID",
-        callBack: SyCallBack(
-          onSuccess: (bool status) {
-            //todo 处理删除成功逻辑
-          },
-          onFail: (String code, String error) {
-            //todo 处理删除失败逻辑
-          },
-        ));
+          msgId: "消息ID",
+          sessionId: '会话ID',
+          callBack: SyCallBack(
+            onSuccess: (bool status) {
+              //todo 处理删除成功逻辑
+            },
+            onFail: (String code, String error) {
+              //todo 处理删除失败逻辑
+            },
+          ),
+        );
   }
 }

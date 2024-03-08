@@ -179,7 +179,7 @@ class _MyAppState extends State<MyExampleApp> {
                       SyClient.getInstance()
                           .getConversationManager()
                           .createSignConversationByUid(
-                              uuid: "66666666666666666666666666666666",
+                              userId: "66666666666666666666666666666666",
                               callback: SyCallBack(
                                   onSuccess: (conversion) {
                                     setState(() {

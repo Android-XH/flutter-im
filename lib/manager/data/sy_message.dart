@@ -19,16 +19,16 @@ class SyMessage {
   SyMessage({
     String? content,
     String? msgId,
-    num? msgTimeStamp,
+    int? msgTimeStamp,
     bool? read,
     SyContact? receiveUserInfo,
     String? requestId,
     bool? send,
     SyContact? sendUserInfo,
     String? sessionId,
-    num? sessionType,
-    num? status,
-    num? type,
+    int? sessionType,
+    int? status,
+    int? type,
     Uri? uri,
   }) {
     _content = content;
@@ -68,7 +68,7 @@ class SyMessage {
 
   String? _content;
   String? _msgId;
-  num? _msgTimeStamp;
+  int? _msgTimeStamp;
   bool? _read;
   SyContact? _receiveUserInfo;
   String? _requestId;
@@ -76,25 +76,24 @@ class SyMessage {
 
   SyContact? _sendUserInfo;
   String? _sessionId;
-  num? _sessionType;
-  num? _status;
-  num? _type;
+  int? _sessionType;
+  int? _status;
+  int? _type;
   Uri? _uri;
 
   SyMessage copyWith({
     String? content,
     String? msgId,
-    num? msgTimeStamp,
+    int? msgTimeStamp,
     bool? read,
     SyContact? receiveUserInfo,
     String? requestId,
     bool? send,
-
     SyContact? sendUserInfo,
     String? sessionId,
-    num? sessionType,
-    num? status,
-    num? type,
+    int? sessionType,
+    int? status,
+    int? type,
     Uri? uri,
   }) =>
       SyMessage(
@@ -117,7 +116,7 @@ class SyMessage {
 
   String? get msgId => _msgId;
 
-  num? get msgTimeStamp => _msgTimeStamp;
+  int? get msgTimeStamp => _msgTimeStamp;
 
   bool? get read => _read;
 
@@ -127,18 +126,17 @@ class SyMessage {
 
   bool? get send => _send;
 
-
   SyContact? get sendUserInfo => _sendUserInfo;
 
   String? get sessionId => _sessionId;
 
-  num? get sessionType => _sessionType;
+  int? get sessionType => _sessionType;
 
-  num? get status => _status;
+  int? get status => _status;
 
-  num? get type => _type;
+  int? get type => _type;
 
-  dynamic get uri => _uri;
+  Uri? get uri => _uri;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -160,5 +158,92 @@ class SyMessage {
     map['type'] = _type;
     map['uri'] = _uri;
     return map;
+  }
+
+  set uri(Uri? value) {
+    _uri = value;
+  }
+
+  set type(int? value) {
+    _type = value;
+  }
+
+  set status(int? value) {
+    _status = value;
+  }
+
+  set sessionType(int? value) {
+    _sessionType = value;
+  }
+
+  set sessionId(String? value) {
+    _sessionId = value;
+  }
+
+  set sendUserInfo(SyContact? value) {
+    _sendUserInfo = value;
+  }
+
+  set send(bool? value) {
+    _send = value;
+  }
+
+  set requestId(String? value) {
+    _requestId = value;
+  }
+
+  set receiveUserInfo(SyContact? value) {
+    _receiveUserInfo = value;
+  }
+
+  set read(bool? value) {
+    _read = value;
+  }
+
+  set msgTimeStamp(int? value) {
+    _msgTimeStamp = value;
+  }
+
+  set msgId(String? value) {
+    _msgId = value;
+  }
+
+  set content(String? value) {
+    _content = value;
+  }
+
+  ///创建文本消息
+  SyMessage.buildTxtMsg(SyContact receiveUserInfo, String content) {
+    _content = content;
+    _receiveUserInfo = _receiveUserInfo;
+    _type = 0;
+  }
+
+  ///创建图片消息
+  SyMessage.buildImgMsg(SyContact receiveUserInfo, Uri uri) {
+    _uri = uri;
+    _receiveUserInfo = _receiveUserInfo;
+    _type = 1;
+  }
+
+  ///创建语音消息
+  SyMessage.buildVideoMsg(SyContact receiveUserInfo, Uri uri) {
+    _uri = uri;
+    _receiveUserInfo = _receiveUserInfo;
+    _type = 2;
+  }
+
+  ///创建语音消息
+  SyMessage.buildVoiceMsg(SyContact receiveUserInfo, Uri uri) {
+    _uri = uri;
+    _receiveUserInfo = _receiveUserInfo;
+    _type = 3;
+  }
+
+  ///创建自定义消息
+  SyMessage.buildCustomMsg(SyContact receiveUserInfo, String content) {
+    _content = content;
+    _receiveUserInfo = _receiveUserInfo;
+    _type = 99;
   }
 }

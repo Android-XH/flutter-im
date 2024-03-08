@@ -1,5 +1,14 @@
 [
   {
+    "title": "导入SDK",
+    "children": [
+      {
+        "title": "通过Git地址导入",
+        "className": "assets/code/markdown/get_sdk.md"
+      }
+    ]
+  },
+  {
     "title": "初始化",
     "children": [
       {
@@ -30,11 +39,34 @@
     "children": [
       {
         "title": "获取会话列表",
-        "className": "CreateSyOptions"
+        "className": "GetConversationList"
       },
       {
-        "title": "添加会话监听",
-        "className": "SyClientInit"
+        "title": "添加/移除会话变化的监听",
+        "className": "AddConversationListener"
+      },
+
+      {
+        "title": "创建会话对象",
+        "className": "CreateSignConversation"
+      },
+
+      {
+        "title": "移除会话",
+        "className": "RemoveConversation"
+      },
+      {
+        "title": "设置会话是否置顶",
+        "className": "SetConversationTopping"
+      },
+      {
+        "title": "获取会话未读消息数",
+        "className": "GetUnReadNum"
+      },
+
+      {
+        "title": "进入或者退出聊天页面",
+        "className": "AddOrRemoveChatting"
       }
     ]
   },
@@ -73,8 +105,6 @@
         "title": "保存消息到本地",
         "className": "SaveMessageToLocal"
       }
-
-
     ]
   }
 ]

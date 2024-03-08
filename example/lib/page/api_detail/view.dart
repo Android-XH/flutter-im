@@ -1,6 +1,8 @@
 import 'package:code_preview/code_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'package:sy_im_sdk_example/page/api_detail/widgets/chat/edit_chat_add_lisntener.dart';
 import 'package:sy_im_sdk_example/page/api_detail/widgets/sy_client/edit_options_widget.dart';
@@ -18,6 +20,8 @@ class ApiDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CodePreview.config = CodePreviewConfig(removeParseComment: false);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('思语IM-SDK'),

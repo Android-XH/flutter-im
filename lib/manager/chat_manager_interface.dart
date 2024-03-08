@@ -20,8 +20,11 @@ abstract class ChatManagerInterface {
   /// 查询消息
   /// @param msgId    消息ID
   /// @param callback
+  /// @param sessionId 会话ID iOS 查询消息需要该参数
   void getMessage(
-      {required String msgId, required SyCallBack<SyMessage> callBack});
+      {required String msgId,
+      required String sessionId,
+      required SyCallBack<SyMessage> callBack});
 
   /// 保存到消息到本地，并不发送到服务器
   /// @param syMessage
@@ -32,7 +35,6 @@ abstract class ChatManagerInterface {
   /// @param syMessage
   void updateMessage(
       {required SyMessage syMessage, required SyCallBack<SyMessage> callBack});
-
 
   /// 查询历史消息
   /// @param starMessage 起始消息，初始化可传入空
@@ -45,5 +47,7 @@ abstract class ChatManagerInterface {
   /// 删除消息
   /// @param msgId
   void deleteMessage(
-      {required String msgId, required SyCallBack<bool> callBack});
+      {required String msgId,
+      required String sessionId,
+      required SyCallBack<bool> callBack});
 }

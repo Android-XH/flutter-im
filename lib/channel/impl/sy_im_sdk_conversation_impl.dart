@@ -35,9 +35,9 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
 
   @override
   void createSignConversationByUid(
-      {required String uuid, required SyCallBack<SyConversation> callback}) {
+      {required String userId, required SyCallBack<SyConversation> callback}) {
     Map<String, String> arguments = <String, String>{};
-    arguments.putIfAbsent("userId", () => uuid);
+    arguments.putIfAbsent("userId", () => userId);
     methodChannel
         .invokeMethod(SyClientMethodCommon.createSignConversation, arguments)
         .then((value) =>

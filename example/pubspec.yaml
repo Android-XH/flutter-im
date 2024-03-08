@@ -31,6 +31,7 @@ dependencies:
   code_preview: ^0.1.5
   get: ^4.6.6
   flutter_screenutil: ^5.9.0
+  flutter_markdown: ^0.6.21
 dev_dependencies:
   integration_test:
     sdk: flutter
@@ -59,7 +60,8 @@ flutter:
     - ./assets/data/
     - ./assets/code/
     - ./assets/code/chat/
-
+    - ./assets/code/markdown/
+    - ./assets/code/conversion/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

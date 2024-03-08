@@ -17,8 +17,10 @@ class ApiListLogic extends GetxController {
   goDetail(Children children) {
     Map<String, String> params = Map();
     params.putIfAbsent("children", () => jsonEncode(children.toJson()));
-    Get.toNamed(AppRouterConfig.apiDetailPage, parameters: params);
+    if (children.className!.endsWith(".md")) {
+      Get.toNamed(AppRouterConfig.makeDownPage, parameters: params);
+    } else {
+      Get.toNamed(AppRouterConfig.apiDetailPage, parameters: params);
+    }
   }
-
-
 }
