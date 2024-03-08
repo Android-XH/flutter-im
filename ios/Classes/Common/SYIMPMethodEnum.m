@@ -23,7 +23,11 @@
 #import "SYIMPRemoveConversationHandler.h"
 #import "SYIMPRestUnReadCountHandler.h"
 #import "SYIMPSetConversationToppingHandler.h"
-
+// 消息
+#import "SYIMPSendMessageHandler.h"
+#import "SYIMPSaveMessageToLocalHandler.h"
+#import "SYIMPGetMessageListHandle.h"
+#import "SYIMPDeleteMessageHandle.h"
 
 @implementation SYIMPMethodEnum
 
@@ -57,6 +61,12 @@ static NSArray<SYIMPMethodEnum *> *values = nil;
             [SYIMPMethodEnum enumWithMethodName:@"restUnReadCount" methodHandler:SYIMPRestUnReadCountHandler.new],
             [SYIMPMethodEnum enumWithMethodName:@"setConversationTopping" methodHandler:SYIMPSetConversationToppingHandler.new],
             
+            // 消息相关
+            [SYIMPMethodEnum enumWithMethodName:@"sendMessage" methodHandler:SYIMPSendMessageHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"saveMessageToLocal" methodHandler:SYIMPSaveMessageToLocalHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"getMessageList" methodHandler:SYIMPGetMessageListHandle.new],
+            [SYIMPMethodEnum enumWithMethodName:@"deleteMessage" methodHandler:SYIMPDeleteMessageHandle.new],
+
         ];
     }
     return values;
