@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: AppRouterConfig.getPages,
-      initialRoute: AppRouterConfig.example,
+      initialRoute: AppRouterConfig.apiListPage,
       onInit: () {
         SDKInitializer.init(context);
       },
