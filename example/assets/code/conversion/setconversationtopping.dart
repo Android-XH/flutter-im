@@ -4,7 +4,7 @@ import 'package:sy_im_sdk/sy_client.dart';
 class SetConversationTopping {
   /*设置会话置顶 isSetTop true置顶，false取消置顶*/
   void setConversationTopping(String sessionId, bool isSetTop) {
-    SyClient.getInstance().getConversationManager().setConversationTopping(
+    SyClient.getInstance().conversationManager().setConversationTopping(
         sessionId: sessionId,
         topping: isSetTop,
         callback: SyCallBack<bool>(

@@ -169,7 +169,7 @@
  *  撤回消息
  *  @param message 消息
  */
-- (void)withdrawMessages:(SYIMMessage *)message {
+- (void)onWithdrawMsg:(SYIMMessage *)message {
     
 }
 
