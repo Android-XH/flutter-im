@@ -7,17 +7,17 @@ import '../contact_interface.dart';
  class ContactManager extends ContactInterface{
   @override
   void addFriend({required String userId, SyCallBack<bool>? callback}) {
-    SyImSdkContact.instance.addFriend(userId: userId);
+    SyImSdkContact.instance.addFriend(userId: userId,callback: callback);
   }
 
   @override
   void deleteFriend({required String userId, SyCallBack<bool>? callback}) {
-    SyImSdkContact.instance.deleteFriend(userId: userId);
+    SyImSdkContact.instance.deleteFriend(userId: userId,callback: callback);
   }
 
   @override
   void editFriendRemark({required String userId, required String remark, SyCallBack<bool>? callback}) {
-    SyImSdkContact.instance.editFriendRemark(userId: userId, remark: remark);
+    SyImSdkContact.instance.editFriendRemark(userId: userId, remark: remark,callback:callback );
   }
 
   @override
@@ -27,13 +27,13 @@ import '../contact_interface.dart';
 
   @override
   Future<SyContact> getUserInfoFromCache(String userId) async {
-   var result = await SyImSdkContact.instance.getUserInfoFromCache(userId).then((value) => null);
+   var result = await SyImSdkContact.instance.getUserInfoFromCache(userId);
    return (result as  SyContact);
   }
 
   @override
   Future<bool> isFriend(String userId)async {
-    var result = await SyImSdkContact.instance.isFriend(userId).then((value) => null);
+    var result = await SyImSdkContact.instance.isFriend(userId);
     return (result as  bool);
   }
  
