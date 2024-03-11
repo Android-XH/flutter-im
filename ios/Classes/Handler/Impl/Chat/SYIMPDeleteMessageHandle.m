@@ -17,9 +17,16 @@
     if ([[optionsMap allKeys] containsObject:@"msgId"] && [[optionsMap allKeys] containsObject:@"sessionId"]) {
         NSString *msgId = optionsMap[@"msgId"];
         NSString *sessionId = optionsMap[@"sessionId"];
-        [[SYIMManager shared].chatManager deleteMessageWithMsgId:msgId sessionId:sessionId];
+       BOOL isSuccess = [[SYIMManager shared].chatManager deleteMessageWithMsgId:msgId sessionId:sessionId];
+        if (isSuccess) {
+            result([NSNumber numberWithBool:isSuccess]);
+        } else {
+            FlutterError *error = [FlutterError errorWithCode:@"500" message:@"deleteMessage Fail" details:nil];
+            result(error);
+        }
     } else {
-        result(@"msgId or sessionId is null!");
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"msgId or sessionId is null!" details:nil];
+        result(error);
     }
 }
 
