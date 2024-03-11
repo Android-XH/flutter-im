@@ -20,11 +20,13 @@
                 [[SYIMManager shared].conversationManager addConversationDelegate:SyImSdkPlugin.shared];
                 [[SYIMManager shared].chatManager addMessageDelegate:SyImSdkPlugin.shared];
             } else {
-                result(@"login failed");
+                FlutterError *error = [FlutterError errorWithCode:@"500" message:@"登录失败" details:nil];
+                result(error);
             }
         }];
     } else {
-        result(@"uuid must not be null!");
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"uuid must not be null!" details:nil];
+        result(error);
     }
 }
 @end
