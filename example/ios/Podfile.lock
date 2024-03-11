@@ -33,8 +33,8 @@ PODS:
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - sy_im_sdk (0.0.1):
     - Flutter
-    - SYIM (~> 0.2.8)
-  - SYIM (0.2.8):
+    - SYIM (~> 0.2.9)
+  - SYIM (0.2.9):
     - AFNetworking
     - CocoaAsyncSocket
     - CocoaLumberjack
@@ -87,8 +87,8 @@ SPEC CHECKSUMS:
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   RealReachability: 828e74e3a1e89ba8f54395344637689cf4065c36
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
-  sy_im_sdk: 4c7874df416b1b73d445bd7249400028b0157680
-  SYIM: d1423feac0e5857e99d534f7c02fc791deb1ee8e
+  sy_im_sdk: 7d4a1b6a43f155cca3e5b5b8fc313b43d2cf5a26
+  SYIM: 7f7e58de518d098977cf14ec8172a4caf5ddb67d
   WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
 
