@@ -1,15 +1,15 @@
 //
-//  SYIMPDeleteMessageHandle.h
+//  SYIMPIsFriendHandler.h
 //  sy_im_sdk
 //
-//  Created by sunchenglei on 2024/3/8.
+//  Created by sunchenglei on 2024/3/11.
 //
 
 #import <Foundation/Foundation.h>
 #import "SYIMPMethodHandler.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SYIMPDeleteMessageHandle : NSObject<SYIMPMethodHandler>
+@interface SYIMPIsFriendHandler : NSObject<SYIMPMethodHandler>
 
 @end
 

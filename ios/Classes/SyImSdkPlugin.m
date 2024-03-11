@@ -1,6 +1,6 @@
 #import "SyImSdkPlugin.h"
 #import "SYIMPChannelCommon.h"
-#import "SYIMPMethodCommon.h"
+//#import "SYIMPMethodCommon.h"
 #import "SYIMPConnectData.h"
 #import "SYIMPMethodHandler.h"
 #import "SYIMPMethodEnum.h"

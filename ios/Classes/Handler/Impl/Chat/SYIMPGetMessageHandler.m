@@ -14,9 +14,16 @@
 // 查询某条消息
 - (void)onMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     NSDictionary *optionsMap = call.arguments;
-    if ([[optionsMap allKeys] containsObject:@"msgId"] && [[optionsMap allKeys] containsObject:@"sessionId"]) {
-        NSString *msgId = optionsMap[@"msgId"];
-        NSString *sessionId = optionsMap[@"sessionId"];
+    NSString *msgId;
+    if ([[optionsMap allKeys] containsObject:@"msgId"]) {
+        msgId = optionsMap[@"msgId"];
+    }
+    NSString *sessionId;
+    if ([[optionsMap allKeys] containsObject:@"sessionId"]) {
+        sessionId = optionsMap[@"sessionId"];
+    }
+    
+    if (!IsStringNull(msgId) && !IsStringNull(sessionId)) {
         SYIMMessage *message= [[SYIMManager shared].chatManager getMessageWithMessageId:msgId sessionId:sessionId];
         if (message) {
             result([message mj_JSONString]);

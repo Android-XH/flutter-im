@@ -1,20 +1,28 @@
 //
-//  SYIMPDeleteMessageHandle.m
+//  SYIMPDeleteMessageHandler.m
 //  sy_im_sdk
 //
 //  Created by sunchenglei on 2024/3/8.
 //
 
-#import "SYIMPDeleteMessageHandle.h"
+#import "SYIMPDeleteMessageHandler.h"
 #import "SyImSdkPlugin.h"
 #import <SYIM/SYIM.h>
 #import <MJExtension/MJExtension.h>
-@implementation SYIMPDeleteMessageHandle
+@implementation SYIMPDeleteMessageHandler
 
 // 删除消息
 - (void)onMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     NSDictionary *optionsMap = call.arguments;
-    if ([[optionsMap allKeys] containsObject:@"msgId"] && [[optionsMap allKeys] containsObject:@"sessionId"]) {
+    NSString *msgId;
+    if ([[optionsMap allKeys] containsObject:@"msgId"]) {
+        msgId = optionsMap[@"msgId"];
+    }
+    NSString *sessionId;
+    if ([[optionsMap allKeys] containsObject:@"sessionId"]) {
+        sessionId = optionsMap[@"sessionId"];
+    }
+    if (!IsStringNull(msgId) && !IsStringNull(sessionId)) {
         NSString *msgId = optionsMap[@"msgId"];
         NSString *sessionId = optionsMap[@"sessionId"];
        BOOL isSuccess = [[SYIMManager shared].chatManager deleteMessageWithMsgId:msgId sessionId:sessionId];
