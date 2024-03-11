@@ -96,7 +96,7 @@ class SyImSdkConversationImpl extends SyImSdkConversation {
     Map<String, String> arguments = <String, String>{};
     arguments.putIfAbsent("userId", () => jsonEncode(userId));
     return methodChannel
-        .invokeMethod(SyClientMethodCommon.getSessionIdByUserId);
+        .invokeMethod(SyClientMethodCommon.getSessionIdByUserId, arguments);
   }
 
   @override
