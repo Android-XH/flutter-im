@@ -18,13 +18,15 @@
         SYIMMessage *message = [SYIMMessage mj_objectWithKeyValues:optionsJson];
         [[SYIMManager shared].chatManager updateMessage:message callBack:^(NSError * _Nonnull error) {
             if (error) {
-                result(error.domain);
+                FlutterError *flutterError = [FlutterError errorWithCode:[NSString stringWithFormat:@"%ld",error.code] message:error.domain details:nil];
+                result(flutterError);
             } else {
                 result([message mj_JSONString]);
             }
         }];
     } else {
-        result(@"syMessage is null!");
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"syMessage is null!" details:nil];
+        result(error);
     }
 }
 @end
