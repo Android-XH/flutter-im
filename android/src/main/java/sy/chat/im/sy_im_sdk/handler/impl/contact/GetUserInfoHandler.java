@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import io.flutter.Log;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import sy.chat.api.util.GsonUtil;
@@ -11,6 +12,7 @@ import sy.chat.im.SyClient;
 import sy.chat.im.manager.callBack.SyCallback;
 import sy.chat.im.manager.data.SyContact;
 import sy.chat.im.sy_im_sdk.handler.MethodHandler;
+import sy.chat.im.util.LogTools;
 
 public class GetUserInfoHandler implements MethodHandler {
     @Override

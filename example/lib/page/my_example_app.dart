@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sy_im_sdk/common/session_type.dart';
@@ -259,11 +261,10 @@ class _MyAppState extends State<MyExampleApp> {
                                   onSuccess: (List<SyConversation> t) {
                                     String result = "";
                                     t.forEach((e) {
-                                      result += e.name!+",";
+                                      result += e.name! + ",";
                                     });
                                     setState(() {
                                       _result = result;
-
                                     });
                                   },
                                   onFail: (String code, String errMsg) {}));
@@ -283,16 +284,82 @@ class _MyAppState extends State<MyExampleApp> {
                         });
                       }));
                     }),
-
                 SizedBox(
                   height: 5,
                 ),
                 _buildButton(
                     title: "推出会话",
                     onPressed: () {
-                      SyClient.getInstance()
-                          .conversationManager()
-                          .removeChatting("7155793691347525633_P__66666666666666666666666666666666");
+                      SyClient.getInstance().conversationManager().removeChatting(
+                          "7155793691347525633_P__66666666666666666666666666666666");
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "查询好友关系",
+                    onPressed: () async {
+                      SyClient.getInstance().contactManager().getUserInfo(
+                          userId: "d95ee550bf624d38adb8cef891f1bb34",
+                          callback: SyCallBack(
+                              onSuccess: (ss) {
+                                setState(() {
+                                  _result = "${ss.toJson()}";
+                                });
+                              },
+                              onFail: (c, s) {}));
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "同步查询好友关系",
+                    onPressed: () async {
+                      var aaa = await SyClient.getInstance()
+                          .contactManager()
+                          .getUserInfoFromCache(
+                              "d95ee550bf624d38adb8cef891f1bb34");
+                      setState(() {
+                        _result = "${aaa.toJson()}";
+                      });
+                    }),
+                SizedBox(
+                  height: 5,
+                ),
+                _buildButton(
+                    title: "设置备注",
+                    onPressed: () async {
+                      var isf = await SyClient.getInstance()
+                          .contactManager()
+                          .isFriend("d95ee550bf624d38adb8cef891f1bb34");
+                      if (!isf) {
+                        SyClient.getInstance().contactManager().addFriend(
+                            userId: "d95ee550bf624d38adb8cef891f1bb34",
+                            callback: SyCallBack<bool>(onSuccess: (info) {
+                              SyClient.getInstance()
+                                  .contactManager()
+                                  .editFriendRemark(
+                                      userId:
+                                          "d95ee550bf624d38adb8cef891f1bb34",
+                                      remark: "客服111",
+                                      callback: SyCallBack(
+                                          onSuccess: (a) {},
+                                          onFail: (c, d) {}));
+                            }, onFail: (code, msg) {
+                              print("msg:$msg");
+                            }));
+                      } else {
+                        SyClient.getInstance()
+                            .contactManager()
+                            .editFriendRemark(
+                                userId: "66666666666666666666666666666666",
+                                remark: "客服",
+                                callback: SyCallBack(
+                                    onSuccess: (a) {
+                                      print("msg editFriendRemark :$a");
+                                    },
+                                    onFail: (c, d) {}));
+                      }
                     })
               ],
             ),

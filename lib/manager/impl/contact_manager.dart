@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:sy_im_sdk/channel/sy_im_sdk_contact_interface.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/manager/data/sy_contact.dart';
@@ -28,7 +30,7 @@ import '../contact_interface.dart';
   @override
   Future<SyContact> getUserInfoFromCache(String userId) async {
    var result = await SyImSdkContact.instance.getUserInfoFromCache(userId);
-   return (result as  SyContact);
+   return  SyContact.fromJson(jsonDecode(result));
   }
 
   @override

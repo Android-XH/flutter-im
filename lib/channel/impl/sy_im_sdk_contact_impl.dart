@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:sy_im_sdk/listener/sy_call_back.dart';
@@ -49,7 +51,7 @@ class SyImSdkContactImpl extends SyImSdkContact {
     arguments.putIfAbsent("userId", () => userId);
     methodChannel
         .invokeMethod(SyClientMethodCommon.getUserInfo, arguments)
-        .then((value) => callback.onSuccess(SyContact.fromJson(value)))
+        .then((value) => callback.onSuccess(SyContact.fromJson(jsonDecode(value))))
         .catchError((e) => callback.onFail.call(e.code, e.message!));
   }
 

@@ -106,5 +106,27 @@
         "className": "SaveMessageToLocal"
       }
     ]
+  },
+  {
+    "title": "用户关系",
+    "children": [
+      {
+        "title": "查询用户信息",
+        "className": "GetUserInfo"
+      },
+      {
+        "title": "添加/删除好友",
+        "className": "AddFriend"
+      },
+      {
+        "title": "设置好友备注",
+        "className": "EditFriendRemark"
+      },
+      {
+        "title": "查询是否是好友",
+        "className": "IsFriend"
+      }
+
+    ]
   }
 ]
