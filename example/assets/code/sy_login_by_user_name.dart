@@ -2,7 +2,7 @@ import 'package:sy_im_sdk/listener/sy_call_back.dart';
 import 'package:sy_im_sdk/sy_client.dart';
 
 class SyLoginByUserName {
-  void loginByUserName() {
+  void loginByToken() {
     //调用业务登录接口获取token
     SyClient.getInstance().loginByToken(
         token: "token",

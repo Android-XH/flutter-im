@@ -13,8 +13,6 @@ class RemoveMessageListener {
       //todo 处理状态变更消息
     });
     //移除消息监听
-    SyClient.getInstance()
-        .chatManager()
-        .removeMessageListener(onMessageListener);
+    SyClient.getInstance().chatManager().removeMessageListener(onMessageListener);
   }
 }

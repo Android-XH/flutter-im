@@ -1,7 +1,14 @@
 name: sy_im_sdk
 description: "A new Flutter project."
 version: 0.0.1
-homepage:
+author: xuhao.0103@163.com
+homepage: https://github.com/Android-XH/xh_im.github.io
+repository: https://github.com/Android-XH/xh_im.github.io
+
+
+
+
+
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
