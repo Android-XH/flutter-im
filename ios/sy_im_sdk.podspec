@@ -17,7 +17,7 @@ A new Flutter project.
   s.public_header_files = 'Classes/**/*.h'
   s.platform = :ios, '12.0'
   s.dependency 'Flutter'
-  s.dependency 'SYIM'
+  s.dependency 'SYIM', '~> 0.2.9'
 #  s.dependency 'MJExtension'
   
 

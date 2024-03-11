@@ -17,6 +17,9 @@
                 result(conversation.sessionId);
             }
         }];
+    } else {
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"uuid 不能为空" details:nil];
+        result(error);
     }
 }
 @end

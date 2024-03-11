@@ -1,6 +1,5 @@
 #import "SyImSdkPlugin.h"
 #import "SYIMPChannelCommon.h"
-#import "SYIMPMethodCommon.h"
 #import "SYIMPConnectData.h"
 #import "SYIMPMethodHandler.h"
 #import "SYIMPMethodEnum.h"
@@ -71,7 +70,8 @@
 
 - (void)postConversationData:(NSArray<SYIMConversation *> *)list {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.conversationChannel sendMessage:[list mj_JSONString]];
+        NSString *jsonString = [[SYIMConversation mj_keyValuesArrayWithObjectArray:list] mj_JSONString];
+        [self.conversationChannel sendMessage:jsonString];
     });
 }
 
@@ -127,7 +127,7 @@
 - (void)onStatusChange:(SYIMMessage *)message {
     SYIMPMessageData *messageData = [[SYIMPMessageData alloc] init];
     messageData.type = @"onStatusChange";
-    messageData.data = [@[message] mj_JSONString];
+    messageData.data = [[SYIMMessage mj_keyValuesArrayWithObjectArray:@[message]] mj_JSONString];
     [self postChatMessageData:messageData];
 }
 
@@ -145,16 +145,23 @@
  *  @param messages 收到消息数组
  */
 - (void)onMessages:(NSArray <SYIMMessage *> *)messages {
+    NSMutableArray *customMsgs = [NSMutableArray array];
     for (SYIMMessage *message in messages) {
         SYIMPMessageData *messageData = [[SYIMPMessageData alloc] init];
-        messageData.data = [message mj_JSONString];
         if (message.messageBody.type == SYIMMessageTypeCustom) {
-            messageData.type = @"onCustomMsg";
-            [self postChatMessageData:messageData];
+            [customMsgs addObject:message];
         }
         messageData.type = @"onMessage";
         [self postChatMessageData:messageData];
     }
+    
+    if (customMsgs.count) {
+        SYIMPMessageData *customMessageData = [[SYIMPMessageData alloc] init];
+        customMessageData.type = @"onCustomMsg";
+        customMessageData.data = [[SYIMMessage mj_keyValuesArrayWithObjectArray:customMsgs] mj_JSONString];
+        [self postChatMessageData:customMessageData];
+    }
+    
 }
 
 - (void)onCmdMsg:(SYIMMessage *)message {
@@ -168,7 +175,7 @@
  *  撤回消息
  *  @param message 消息
  */
-- (void)withdrawMessages:(SYIMMessage *)message {
+- (void)onWithdrawMsg:(SYIMMessage *)message {
     
 }
 

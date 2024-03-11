@@ -14,6 +14,9 @@
     if (sessionId) {
         NSInteger unreadCount = [[SYIMManager shared].conversationManager getUnReadCountWithSessionId:sessionId];
         result(@(unreadCount));
+    } else {
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"sessionId不能为空" details:nil];
+        result(error);
     }
 }
 @end

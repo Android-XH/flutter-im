@@ -23,8 +23,20 @@
 #import "SYIMPRemoveConversationHandler.h"
 #import "SYIMPRestUnReadCountHandler.h"
 #import "SYIMPSetConversationToppingHandler.h"
-
-
+// 消息
+#import "SYIMPSendMessageHandler.h"
+#import "SYIMPSaveMessageToLocalHandler.h"
+#import "SYIMPGetMessageListHandle.h"
+#import "SYIMPDeleteMessageHandler.h"
+#import "SYIMPUpdateMessageHandler.h"
+#import "SYIMPGetMessageHandler.h"
+// 联系人
+#import "SYIMPGetUserInfoHandler.h"
+#import "SYIMPGetUserInfoFromCacheHandler.h"
+#import "SYIMPAddFriendHandler.h"
+#import "SYIMPDeleteFriendHandler.h"
+#import "SYIMPEditFriendRemarkHandler.h"
+#import "SYIMPIsFriendHandler.h"
 @implementation SYIMPMethodEnum
 
 + (instancetype)enumWithMethodName:(NSString *)methodName methodHandler:(id<SYIMPMethodHandler>)methodHandler {
@@ -56,6 +68,22 @@ static NSArray<SYIMPMethodEnum *> *values = nil;
             [SYIMPMethodEnum enumWithMethodName:@"removeConversation" methodHandler:SYIMPRemoveConversationHandler.new],
             [SYIMPMethodEnum enumWithMethodName:@"restUnReadCount" methodHandler:SYIMPRestUnReadCountHandler.new],
             [SYIMPMethodEnum enumWithMethodName:@"setConversationTopping" methodHandler:SYIMPSetConversationToppingHandler.new],
+            
+            // 消息相关
+            [SYIMPMethodEnum enumWithMethodName:@"sendMessage" methodHandler:SYIMPSendMessageHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"saveMessageToLocal" methodHandler:SYIMPSaveMessageToLocalHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"getMessageList" methodHandler:SYIMPGetMessageListHandle.new],
+            [SYIMPMethodEnum enumWithMethodName:@"deleteMessage" methodHandler:SYIMPDeleteMessageHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"updateMessage" methodHandler:SYIMPUpdateMessageHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"getMessage" methodHandler:SYIMPGetMessageHandler.new],
+            
+            // 联系人相关
+            [SYIMPMethodEnum enumWithMethodName:@"getUserInfo" methodHandler:SYIMPGetUserInfoHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"getUserInfoFromCache" methodHandler:SYIMPGetUserInfoFromCacheHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"addFriend" methodHandler:SYIMPAddFriendHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"deleteFriend" methodHandler:SYIMPDeleteFriendHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"editFriendRemark" methodHandler:SYIMPEditFriendRemarkHandler.new],
+            [SYIMPMethodEnum enumWithMethodName:@"isFriend" methodHandler:SYIMPIsFriendHandler.new],
             
         ];
     }

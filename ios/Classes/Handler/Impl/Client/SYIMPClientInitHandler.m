@@ -26,7 +26,8 @@
         }
         [[SYIMManager shared] initSDKWithOptions:options];
     } else {
-        NSLog(@"缺少 AppID, AppSecret等必要数据");
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"缺少 AppID, AppSecret等必要数据" details:nil];
+        result(error);
     }
     [[SYIMManager shared].sessionManager appendConnectHandler:SyImSdkPlugin.shared];
     [[SYIMManager shared].sessionManager appendLoginResultDelegate:SyImSdkPlugin.shared];

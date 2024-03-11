@@ -5,7 +5,7 @@ class GetUnReadNum {
   /*获取所有未读消息数量*/
   void getAllUnReadNum() async {
     int num =
-        await SyClient.getInstance().getConversationManager().getAllUnReadNum();
+        await SyClient.getInstance().conversationManager().getAllUnReadNum();
   }
 
 
@@ -13,7 +13,7 @@ class GetUnReadNum {
   void getAllUnReadNumBySessionType() async {
     var sessionType = SessionType.PRIVATE; /*var sessionType = SessionType.GROUP*/
     int num = await SyClient.getInstance()
-        .getConversationManager()
+        .conversationManager()
         .getAllUnReadNumBySessionType(sessionType: sessionType);
   }
 
@@ -21,13 +21,13 @@ class GetUnReadNum {
   /*根据会话Id查询该所有未读消息数量*/
   void getUnReadNum(String sessionId)async {
     int num = await SyClient.getInstance()
-        .getConversationManager()
+        .conversationManager()
         .getUnReadNum(sessionId);
   }
 
 
   /*根据会话Id重置会话的未读消息数量*/
   void restUnReadCount(String sessionId) {
-    SyClient.getInstance().getConversationManager().restUnReadCount(sessionId);
+    SyClient.getInstance().conversationManager().restUnReadCount(sessionId);
   }
 }

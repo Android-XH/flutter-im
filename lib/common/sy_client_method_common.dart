@@ -24,4 +24,11 @@ class SyClientMethodCommon {
   static const String restUnReadCount = "restUnReadCount";
   static const String setConversationTopping = "setConversationTopping";
 
+  static const String getUserInfo = "getUserInfo";
+  static const String getUserInfoFromCache = "getUserInfoFromCache";
+  static const String addFriend = "addFriend";
+  static const String deleteFriend = "deleteFriend";
+  static const String editFriendRemark = "editFriendRemark";
+  static const String isFriend = "isFriend";
+
 }

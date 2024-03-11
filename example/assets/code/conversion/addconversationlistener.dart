@@ -8,10 +8,10 @@ class AddConversationListener {
   });
   /*注册监听*/
   void addConversationListener() {
-    SyClient.getInstance().getConversationManager().addConversationListener(listener);
+    SyClient.getInstance().conversationManager().addConversationListener(listener);
   }
   /*不需要时候可以取消监听*/
   void removeConversationListener() {
-    SyClient.getInstance().getConversationManager().removeConversationListener(listener);
+    SyClient.getInstance().conversationManager().removeConversationListener(listener);
   }
 }

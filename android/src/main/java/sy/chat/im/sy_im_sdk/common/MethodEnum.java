@@ -9,6 +9,12 @@ import sy.chat.im.sy_im_sdk.handler.impl.chat.SendMessageHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.chat.UpdateMessageHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.AddConnectListenerHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.client.LoginByUuidHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.contact.AddFriendHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.contact.DeleteFriendHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.contact.EditFriendRemarkHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.contact.GetUserInfoFromCacheHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.contact.GetUserInfoHandler;
+import sy.chat.im.sy_im_sdk.handler.impl.contact.IsFriendHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.conversation.AddChattingHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.conversation.GetAllUnReadNumHandler;
 import sy.chat.im.sy_im_sdk.handler.impl.conversation.GetConversationListHandler;
@@ -53,9 +59,17 @@ public enum MethodEnum {
     CONVERSATION_REMOVE_CHATTING("removeChatting", new RemoveChattingHandler()),
     CONVERSATION_REMOVE_CONVERSATION("removeConversation", new RemoveConversationHandler()),
     CONVERSATION_REST_UNREAD_COUNT("restUnReadCount", new RestUnReadCountHandler()),
-    CONVERSATION_SET_CONVERSATION_TOPPING("setConversationTopping", new SetConversationToppingHandler())
+    CONVERSATION_SET_CONVERSATION_TOPPING("setConversationTopping", new SetConversationToppingHandler()),
     //会话管理配置结束
 
+    //用户关系开始
+    GET_USERINFO("getUserInfo", new GetUserInfoHandler()),
+    GET_USERINFO_FROM_CACHE("getUserInfoFromCache", new GetUserInfoFromCacheHandler()),
+    ADD_FRIEND("addFriend", new AddFriendHandler()),
+    DELETE_FRIEND("deleteFriend", new DeleteFriendHandler()),
+    EDIT_FRIEND_REMARK("editFriendRemark", new EditFriendRemarkHandler()),
+    IS_FRIEND("isFriend", new IsFriendHandler())
+    //用户关系结束
     ;
 
 
