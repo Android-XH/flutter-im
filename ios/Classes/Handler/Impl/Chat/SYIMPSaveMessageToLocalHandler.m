@@ -18,7 +18,8 @@
         SYIMMessage *message = [SYIMMessage mj_objectWithKeyValues:optionsJson];
         [[SYIMManager shared].chatManager saveMessageToLocal:message isUpdateConversation:NO];
     } else {
-        result(@"syMessage is null!");
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"syMessage is null!" details:nil];
+        result(error);
     }
 }
 

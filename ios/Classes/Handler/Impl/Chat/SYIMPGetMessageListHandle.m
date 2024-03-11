@@ -21,7 +21,8 @@
       NSArray <SYIMMessage *> *messageList =  [[SYIMManager shared].chatManager getMessageList:message pageSize:pageSize > 0 ? pageSize : 20];
         result([[SYIMMessage mj_keyValuesArrayWithObjectArray:messageList] mj_JSONString]);
     } else {
-        result(@"syMessage is null!");
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"syMessage is null!" details:nil];
+        result(error);
     }
 }
 

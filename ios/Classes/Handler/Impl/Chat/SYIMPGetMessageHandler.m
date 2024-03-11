@@ -21,10 +21,12 @@
         if (message) {
             result([message mj_JSONString]);
         } else {
-            result(@"getMessage error");
+            FlutterError *error = [FlutterError errorWithCode:@"500" message:@"getMessage error" details:nil];
+            result(error);
         }
     } else {
-        result(@"msgId or sessionId is null!");
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"msgId or sessionId is null!" details:nil];
+        result(error);
     }
 }
 
