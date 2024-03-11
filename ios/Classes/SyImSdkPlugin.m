@@ -146,16 +146,23 @@
  *  @param messages 收到消息数组
  */
 - (void)onMessages:(NSArray <SYIMMessage *> *)messages {
+    NSMutableArray *customMsgs = [NSMutableArray array];
     for (SYIMMessage *message in messages) {
         SYIMPMessageData *messageData = [[SYIMPMessageData alloc] init];
-        messageData.data = [message mj_JSONString];
         if (message.messageBody.type == SYIMMessageTypeCustom) {
-            messageData.type = @"onCustomMsg";
-            [self postChatMessageData:messageData];
+            [customMsgs addObject:message];
         }
         messageData.type = @"onMessage";
         [self postChatMessageData:messageData];
     }
+    
+    if (customMsgs.count) {
+        SYIMPMessageData *customMessageData = [[SYIMPMessageData alloc] init];
+        customMessageData.type = @"onCustomMsg";
+        customMessageData.data = [[SYIMMessage mj_keyValuesArrayWithObjectArray:customMsgs] mj_JSONString];
+        [self postChatMessageData:customMessageData];
+    }
+    
 }
 
 - (void)onCmdMsg:(SYIMMessage *)message {

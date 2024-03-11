@@ -12,7 +12,13 @@
 @implementation SYIMPLogOutHandler
 - (void)onMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     [[SYIMManager shared].sessionManager logoutWithComplete:^(BOOL isSuccess) {
-        result(isSuccess ? @"退出登录成功" : @"退出登录失败");
+        if (isSuccess) {
+            result(@"退出登录成功");
+        } else {
+            FlutterError *error = [FlutterError errorWithCode:@"500" message:@"退出登录失败" details:nil];
+            result(error);
+        }
+        
     }];
 }
 @end

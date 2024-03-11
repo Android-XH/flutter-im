@@ -108,7 +108,7 @@ class _MyAppState extends State<MyExampleApp> {
                     title: "UUID登录",
                     onPressed: () {
                       SyClient.getInstance().loginByUUID(
-                        uuid: "d95ee550bf624d38adb8cef891f1bb34",
+                        uuid: "69d5d26380494fa9ab7a81ee5267957f",
                         callback: SyCallBack(onSuccess: (authInfo) {
                           print("登录成功:${authInfo.toJson()}");
                           setState(() {

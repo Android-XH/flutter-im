@@ -14,6 +14,9 @@
     if (sessionId) {
         [[SYIMManager shared].conversationManager resetUnReadCountWithSessionId:sessionId];
         result(@"restUnReadCount success");
+    } else {
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"sessionId不能为空" details:nil];
+        result(error);
     }
 }
 @end

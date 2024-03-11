@@ -19,11 +19,13 @@
             if (conversation) {
                 result([conversation mj_JSONString]);
             } else {
-                result(@"创建会话失败");
+                FlutterError *error = [FlutterError errorWithCode:@"500" message:@"创建会话失败" details:nil];
+                result(error);
             }
         }];
     } else {
-        result(@"uuid must not be null!");
+        FlutterError *error = [FlutterError errorWithCode:@"500" message:@"uuid 不能为空" details:nil];
+        result(error);
     }
 }
 @end
